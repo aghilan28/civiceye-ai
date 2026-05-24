@@ -1,0 +1,39 @@
+services:
+  inference-worker-gpu:
+    build:
+      context: ../..
+      dockerfile: Dockerfile.ai
+    image: civiceye/inference-worker-gpu:latest
+    command: ["python3", "-m", "backend.distributed.worker"]
+    environment:
+      CIVICEYE_BACKEND_URL: ${CIVICEYE_BACKEND_URL:?set backend URL}
+      DATABASE_URL: ${DATABASE_URL:-}
+      REDIS_URL: ${REDIS_URL:-}
+      CIVICEYE_WORKER_SHARED_SECRET: ${CIVICEYE_WORKER_SHARED_SECRET:?set worker shared secret}
+      CIVICEYE_WORKER_ID: ${CIVICEYE_WORKER_ID:-gpu-worker-0}
+      CIVICEYE_QUEUE_NAMES: ${CIVICEYE_QUEUE_NAMES:-gpu.high,gpu.emergency,gpu.standard}
+      CIVICEYE_MODEL_WEIGHTS: /app/models/best.pt
+      CIVICEYE_FALLBACK_WEIGHTS: /app/yolov8n.pt
+      CIVICEYE_MODEL_VERSION: ${CIVICEYE_MODEL_VERSION:-pothole-yolov8-v0.2.0}
+      CIVICEYE_STORAGE_DIR: /app/runtime/ai
+      CIVICEYE_WORKER_CONCURRENCY: ${CIVICEYE_WORKER_CONCURRENCY:-1}
+    volumes:
+      - worker-runtime:/app/runtime/ai
+      - ${CIVICEYE_MODEL_DIR:-../../ai/checkpoints}:/app/models:ro
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD-SHELL", "sh /app/deploy/gpu-worker/validate-worker-runtime.sh"]
+      interval: 60s
+      timeout: 30s
+      start_period: 60s
+      retries: 3
+    restart: unless-stopped
+
+volumes:
+  worker-runtime:

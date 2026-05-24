@@ -1,0 +1,60 @@
+global:
+  region: ap-south-1
+  imagePullPolicy: IfNotPresent
+  domain: civiceye.example.com
+
+api:
+  image: ghcr.io/civiceye/civiceye-ai-backend:latest
+  replicas: 3
+  minReplicas: 3
+  maxReplicas: 16
+  cpuTarget: 70
+  storageSize: 50Gi
+  modelPvc: civiceye-model-artifacts
+  env:
+    CIVICEYE_MODEL_VERSION: pothole-yolov8-v0.2.0
+    CIVICEYE_STORAGE_DIR: /app/runtime/ai
+    CIVICEYE_CORS_ORIGINS: https://civiceye.example.com
+    CIVICEYE_OBJECT_STORAGE_PROVIDER: s3
+    CIVICEYE_OBJECT_STORAGE_BUCKET: civiceye-media
+    CIVICEYE_OBJECT_STORAGE_REGION: ap-south-1
+    CIVICEYE_REQUIRE_AUTH: "true"
+    CIVICEYE_WEBSOCKET_MAX_MESSAGES_PER_MINUTE: "120"
+
+web:
+  image: ghcr.io/civiceye/civiceye-web:latest
+  replicas: 3
+  minReplicas: 3
+  maxReplicas: 12
+
+worker:
+  image: ghcr.io/civiceye/civiceye-ai-backend:latest
+  gpuReplicas: 2
+  cpuReplicas: 2
+  gpuLimit: 1
+  queues:
+    gpu: gpu.high
+    cpu: cpu.standard
+
+ingress:
+  enabled: true
+  className: nginx
+  tlsSecret: civiceye-tls
+  certManagerIssuer: letsencrypt-prod
+
+redis:
+  urlSecretKey: redis-url
+
+postgres:
+  urlSecretKey: database-url
+
+secrets:
+  name: civiceye-secrets
+  objectStorageAccessKey: object-storage-access-key
+  objectStorageSecretKey: object-storage-secret-key
+  inferenceSharedSecretKey: inference-shared-secret
+
+observability:
+  prometheusScrape: true
+  lokiEnabled: true
+  grafanaDashboards: true

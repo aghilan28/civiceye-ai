@@ -1,0 +1,14 @@
+split_name: pothole_seeded_70_20_10
+seed: 42
+ratios:
+  train: 0.7
+  val: 0.2
+  test: 0.1
+stratify_by:
+  - has_pothole
+  - severity
+  - source_id
+leakage_guards:
+  perceptual_hash: true
+  source_grouping: true
+  geo_cluster_grouping: true

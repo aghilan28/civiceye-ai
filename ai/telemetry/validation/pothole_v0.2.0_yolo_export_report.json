@@ -1,0 +1,28 @@
+{
+  "counts": {
+    "test": {
+      "images": 100,
+      "labels": 100
+    },
+    "train": {
+      "images": 675,
+      "labels": 675
+    },
+    "val": {
+      "images": 192,
+      "labels": 192
+    }
+  },
+  "data_yaml": {
+    "names": {
+      "0": "pothole"
+    },
+    "path": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\exports\\yolo\\pothole_v0.2.0",
+    "test": "images/test",
+    "train": "images/train",
+    "val": "images/val"
+  },
+  "export_dir": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\exports\\yolo\\pothole_v0.2.0",
+  "issues": [],
+  "passed": true
+}

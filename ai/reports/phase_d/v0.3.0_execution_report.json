@@ -1,0 +1,42 @@
+{
+  "fused_manifest": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\manifests\\pothole_negative_aware_v0.3.0.json",
+  "negative_manifest": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\manifests\\negative_road_context_v0.3.0.json",
+  "positive_manifest": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\manifests\\pothole_real_v0.2.0.json",
+  "quality_gate_passed": false,
+  "roboflow_api_key_present": true,
+  "split_manifest": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\versions\\v0.3.0\\manifest.json",
+  "steps": [
+    {
+      "command": [
+        "C:\\Users\\AKILA\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-m",
+        "ai.scripts.ingest_dataset",
+        "--sources-config",
+        "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\configs\\dataset_sources_phase_d_negatives.yaml",
+        "--dataset-id",
+        "civiceye-road-context-negatives",
+        "--version",
+        "v0.3.0_negatives",
+        "--raw-root",
+        "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\raw",
+        "--output-manifest",
+        "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\manifests\\negative_road_context_v0.3.0.json",
+        "--download"
+      ],
+      "cwd": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal",
+      "name": "ingest_negative_sources",
+      "returncode": 1,
+      "status": "failed",
+      "stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\scripts\\ingest_dataset.py\", line 112, in <module>\n    main()\n  File \"C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\scripts\\ingest_dataset.py\", line 99, in main\n    output = ingest_sources(\n             ^^^^^^^^^^^^^^^\n  File \"C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\scripts\\ingest_dataset.py\", line 62, in ingest_sources\n    raise RuntimeError(f\"No dataset sources could be ingested for {version}\")\nRuntimeError: No dataset sources could be ingested for v0.3.0_negatives\n",
+      "stdout": ""
+    },
+    {
+      "name": "fuse_positive_negative",
+      "reason": "negative manifest was not created; check Roboflow access and ROBOFLOW_API_KEY",
+      "status": "skipped"
+    }
+  ],
+  "training_requested": true,
+  "version": "v0.3.0",
+  "yolo_export": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\exports\\yolo\\pothole_v0.3.0"
+}

@@ -1,0 +1,21 @@
+{
+  "title": "CivicEye Websocket",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Connected clients",
+      "targets": [
+        { "expr": "civiceye_websocket_clients" }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Events by type",
+      "targets": [
+        { "expr": "sum(rate(civiceye_websocket_events_total[5m])) by (event_type)" }
+      ]
+    }
+  ]
+}

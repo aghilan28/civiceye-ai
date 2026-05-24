@@ -1,0 +1,14 @@
+python: "3.11"
+cuda:
+  required_for_training: false
+  preferred: true
+  min_compute_capability: "7.0"
+storage:
+  raw_data_root: raw
+  processed_root: processed
+  export_root: exports
+  model_root: models
+telemetry:
+  output_root: telemetry
+  structured_logs: true
+  validation_reports: true

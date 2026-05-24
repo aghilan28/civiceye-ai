@@ -1,0 +1,34 @@
+{
+  "dataset_id": "civiceye-pothole-real",
+  "merged": {
+    "annotations": 3225,
+    "images": 967,
+    "negative_images": 0,
+    "positive_images": 967,
+    "source_ids": [
+      "jaygala24_ivcnz_pothole_yolo"
+    ]
+  },
+  "sources": [
+    {
+      "annotations": 4075,
+      "citation": "Chitale et al., Pothole Detection and Dimension Estimation System using Deep Learning (YOLO) and Image Processing, IVCNZ 2020.",
+      "class_map": {
+        "0": "pothole"
+      },
+      "format": "yolo",
+      "images": 1243,
+      "license": "MIT",
+      "local_path": null,
+      "name": "Pothole Dataset IVCNZ",
+      "negative": false,
+      "negative_images": 0,
+      "positive_images": 1243,
+      "resolved_root": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\raw\\jaygala24_ivcnz_pothole_yolo",
+      "source_id": "jaygala24_ivcnz_pothole_yolo",
+      "source_type": "github_release",
+      "url": "https://github.com/jaygala24/pothole-detection/releases/download/v1.0.0/Pothole.Dataset.IVCNZ.zip"
+    }
+  ],
+  "version": "v0.2.0"
+}

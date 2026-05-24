@@ -1,0 +1,97 @@
+sources:
+  - source_id: roboflow_autonomous_driving_wzdzy
+    name: Roboflow autonomous driving road/lane context
+    source_type: roboflow_universe
+    license: CC BY 4.0
+    url:
+    workspace: autonomous-driving-emeju
+    project: autonomous-driving-wzdzy
+    version: 6
+    roboflow_format: yolov8
+    local_path:
+    format: yolo
+    class_map: {}
+    negative: true
+    road_context_filter: true
+    max_images: 4500
+    citation: https://universe.roboflow.com/autonomous-driving-emeju/autonomous-driving-wzdzy
+  - source_id: roboflow_autonomous_driving_40ukk
+    name: Roboflow transportation autonomous driving context
+    source_type: roboflow_universe
+    license: CC BY 4.0
+    url:
+    workspace: transportation-0bexg
+    project: autonomous-driving-40ukk
+    version: 3
+    roboflow_format: yolov8
+    local_path:
+    format: yolo
+    class_map: {}
+    negative: true
+    road_context_filter: true
+    max_images: 1200
+    citation: https://universe.roboflow.com/transportation-0bexg/autonomous-driving-40ukk
+  - source_id: roboflow_bdd100k_e3s18
+    name: Roboflow BDD100K driving context
+    source_type: roboflow_universe
+    license: CC BY 4.0
+    url:
+    workspace: eastsky
+    project: bdd100k-e3s18
+    version: 1
+    roboflow_format: yolov8
+    local_path:
+    format: yolo
+    class_map: {}
+    negative: true
+    road_context_filter: true
+    max_images: 10000
+    citation: https://universe.roboflow.com/eastsky/bdd100k-e3s18
+  - source_id: roboflow_cityscapes_hgg49
+    name: Roboflow CityScapes instance segmentation context
+    source_type: roboflow_universe
+    license: CC BY 4.0
+    url:
+    workspace: cityscapeseyolo
+    project: cityscapes-hgg49
+    version: 1
+    roboflow_format: yolov8
+    local_path:
+    format: yolo
+    class_map: {}
+    negative: true
+    road_context_filter: true
+    max_images: 3500
+    citation: https://universe.roboflow.com/cityscapeseyolo/cityscapes-hgg49
+  - source_id: roboflow_cityscapes_wqjba
+    name: Roboflow Cityscapes object detection context
+    source_type: roboflow_universe
+    license: CC BY 4.0
+    url:
+    workspace: yoav9113-gmail-com
+    project: cityscapes-wqjba
+    version: 1
+    roboflow_format: yolov8
+    local_path:
+    format: yolo
+    class_map: {}
+    negative: true
+    road_context_filter: true
+    max_images: 3500
+    citation: https://universe.roboflow.com/yoav9113-gmail-com/cityscapes-wqjba
+  - source_id: roboflow_road_segmentation_olxqu
+    name: Roboflow road segmentation hard negatives
+    source_type: roboflow_universe
+    license: CC BY 4.0
+    url:
+    workspace: object-detection-yy9t1
+    project: road-segmentation-olxqu
+    version: 1
+    roboflow_format: yolov8
+    local_path:
+    format: yolo
+    class_map: {}
+    negative: true
+    road_context_filter: true
+    max_images: 8000
+    citation: https://universe.roboflow.com/object-detection-yy9t1/road-segmentation-olxqu

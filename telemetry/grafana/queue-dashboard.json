@@ -1,0 +1,14 @@
+{
+  "title": "CivicEye Queue",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Queue depth",
+      "targets": [
+        { "expr": "sum(civiceye_queue_depth) by (queue_name, status)" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "CivicEye",
+  "short_name": "CivicEye",
+  "description": "AI-powered civic infrastructure operating system for smart-city monitoring.",
+  "start_url": "/dashboard",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#050816",
+  "background_color": "#050816",
+  "categories": ["productivity", "utilities", "government"],
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

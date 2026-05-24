@@ -1,0 +1,67 @@
+experiment_name: pothole_yolov8n_baseline
+dataset_version: v0.1.0
+yolo_data_yaml: exports/yolo/pothole_v0.1.0/data.yaml
+model: yolov8n.pt
+pretrained_weights:
+resume_checkpoint:
+epochs: 80
+image_size: 960
+batch_size: 16
+workers: 8
+device: auto
+mixed_precision: true
+optimizer: auto
+scheduler: cosine
+learning_rate:
+weight_decay:
+patience: 18
+seed: 42
+project: experiments/pothole_detection
+run_name: yolov8n_v0.1.0_baseline
+augmentation_profile: pothole_field_conditions
+classes:
+  - pothole
+severity_labels:
+  - minor
+  - moderate
+  - severe
+  - critical
+device_config:
+  allow_cpu_fallback: true
+  min_free_vram_gb: 2.0
+  batch_scale_safety: 0.8
+tracking:
+  mlflow_enabled: true
+  mlflow_tracking_uri: file:./experiments/mlruns
+  wandb_enabled: false
+  wandb_project: civiceye-pothole-detection
+  tags:
+    phase: phase_b
+    detector: pothole
+evaluation:
+  save_confusion_matrix: true
+  save_pr_curve: true
+  save_predictions: true
+  iou_threshold: 0.5
+  confidence_thresholds:
+    - 0.25
+    - 0.5
+    - 0.75
+  hard_negative_categories:
+    - puddle
+    - road_patch
+    - shadow
+    - oil_stain
+    - road_marking
+    - crack
+    - debris
+export:
+  formats:
+    - onnx
+    - torchscript
+  dynamic: true
+  simplify: true
+  opset: 12
+  half: false
+  int8: false
+  include_tensorrt_ready_metadata: true

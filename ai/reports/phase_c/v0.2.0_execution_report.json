@@ -1,0 +1,114 @@
+{
+  "manifest": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\manifests\\pothole_real_v0.2.0.json",
+  "production_quality_gate_passed": false,
+  "split_manifest": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\versions\\v0.2.0\\manifest.json",
+  "steps": [
+    {
+      "command": [
+        "C:\\Users\\AKILA\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-m",
+        "ai.scripts.ingest_dataset",
+        "--sources-config",
+        "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\configs\\dataset_sources_phase_c.yaml",
+        "--dataset-id",
+        "civiceye-pothole-real",
+        "--version",
+        "v0.2.0",
+        "--raw-root",
+        "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\raw",
+        "--output-manifest",
+        "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\manifests\\pothole_real_v0.2.0.json",
+        "--download"
+      ],
+      "cwd": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal",
+      "name": "ingest",
+      "returncode": 0,
+      "status": "passed",
+      "stderr": "",
+      "stdout": "Ingested manifest written to C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\manifests\\pothole_real_v0.2.0.json\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\AKILA\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-m",
+        "ai.scripts.validate_dataset",
+        "--manifest",
+        "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\manifests\\pothole_real_v0.2.0.json",
+        "--output",
+        "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\telemetry\\validation\\pothole_real_v0.2.0_report.json"
+      ],
+      "cwd": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal",
+      "name": "validate_manifest",
+      "returncode": 1,
+      "status": "failed",
+      "stderr": "Dataset validation failed. Report written to C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\telemetry\\validation\\pothole_real_v0.2.0_report.json\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\AKILA\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-m",
+        "ai.scripts.create_splits",
+        "--manifest",
+        "datasets/manifests/pothole_real_v0.2.0.json",
+        "--config",
+        "configs/splits/pothole_70_20_10.yaml",
+        "--version",
+        "v0.2.0",
+        "--output-dir",
+        "versions"
+      ],
+      "cwd": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai",
+      "name": "create_splits",
+      "returncode": 0,
+      "status": "passed",
+      "stderr": "",
+      "stdout": "Split manifest written to versions\\v0.2.0\\manifest.json\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\AKILA\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-m",
+        "ai.scripts.export_yolo",
+        "--version",
+        "v0.2.0",
+        "--manifest",
+        "versions/v0.2.0/manifest.json",
+        "--output-root",
+        "exports"
+      ],
+      "cwd": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai",
+      "name": "export_yolo",
+      "returncode": 0,
+      "status": "passed",
+      "stderr": "",
+      "stdout": "YOLO export written to exports\\yolo\\pothole_v0.2.0\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\AKILA\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-m",
+        "ai.scripts.validate_yolo_export",
+        "--export-dir",
+        "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\exports\\yolo\\pothole_v0.2.0",
+        "--output",
+        "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\telemetry\\validation\\pothole_v0.2.0_yolo_export_report.json"
+      ],
+      "cwd": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal",
+      "name": "validate_yolo_export",
+      "returncode": 0,
+      "status": "passed",
+      "stderr": "",
+      "stdout": "YOLO export validation passed. Report written to C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\telemetry\\validation\\pothole_v0.2.0_yolo_export_report.json\n"
+    },
+    {
+      "name": "train",
+      "reason": "quality_gate_failed",
+      "status": "skipped"
+    }
+  ],
+  "training_requested": false,
+  "ultralytics_available": false,
+  "version": "v0.2.0",
+  "yolo_export": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\exports\\yolo\\pothole_v0.2.0"
+}

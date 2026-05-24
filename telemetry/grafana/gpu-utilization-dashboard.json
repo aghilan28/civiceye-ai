@@ -1,0 +1,21 @@
+{
+  "title": "CivicEye GPU Utilization",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "GPU utilization",
+      "targets": [
+        { "expr": "civiceye_gpu_utilization_percent" }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "GPU memory",
+      "targets": [
+        { "expr": "civiceye_gpu_memory_mb" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "created_at": "2026-05-16T07:35:31.088996+00:00",
+  "data_yaml": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\merged\\pothole_combined\\data.yaml",
+  "duration_seconds": 2804.174,
+  "manifest": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\merged\\pothole_combined\\civiceye_manifest.json",
+  "merged_dataset": {
+    "annotation_count": 83435,
+    "issues": [],
+    "negative_images": 6255,
+    "passed": true,
+    "path": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\merged\\pothole_combined",
+    "positive_images": 25627,
+    "split_counts": {
+      "test": {
+        "images": 2935,
+        "labels": 2935
+      },
+      "train": {
+        "images": 24416,
+        "labels": 24416
+      },
+      "valid": {
+        "images": 4531,
+        "labels": 4531
+      }
+    }
+  },
+  "roboflow_sources": [
+    {
+      "download_seconds": 141.435,
+      "duplicate_images": 198,
+      "empty_labels": 3,
+      "errors": [],
+      "extraction_dir": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\raw\\roboflow_downloads\\positive\\smartathon\\new-pothole-detection\\v2\\extracted",
+      "images_accepted": 9039,
+      "images_seen": 9240,
+      "invalid_labels": 0,
+      "labels_seen": 9240,
+      "labels_written": 9039,
+      "missing_labels": 0,
+      "rejected_images": 3,
+      "resolved_version": 2,
+      "source": {
+        "format": "yolov8",
+        "project": "new-pothole-detection",
+        "role": "positive",
+        "version": null,
+        "workspace": "smartathon"
+      },
+      "status": "merged"
+    },
+    {
+      "download_seconds": 19.684,
+      "duplicate_images": 0,
+      "empty_labels": 0,
+      "errors": [],
+      "extraction_dir": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\raw\\roboflow_downloads\\positive\\brad-dwyer\\pothole-voxrl\\v1\\extracted",
+      "images_accepted": 665,
+      "images_seen": 665,
+      "invalid_labels": 1,
+      "labels_seen": 665,
+      "labels_written": 665,
+      "missing_labels": 0,
+      "rejected_images": 0,
+      "resolved_version": 1,
+      "source": {
+        "format": "yolov8",
+        "project": "pothole-voxrl",
+        "role": "positive",
+        "version": null,
+        "workspace": "brad-dwyer"
+      },
+      "status": "merged"
+    },
+    {
+      "download_seconds": 33.942,
+      "duplicate_images": 1,
+      "empty_labels": 1555,
+      "errors": [],
+      "extraction_dir": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\raw\\roboflow_downloads\\positive\\baka-1ravj\\road-damage-det\\v4\\extracted",
+      "images_accepted": 7832,
+      "images_seen": 9388,
+      "invalid_labels": 0,
+      "labels_seen": 9388,
+      "labels_written": 7832,
+      "missing_labels": 0,
+      "rejected_images": 1555,
+      "resolved_version": 4,
+      "source": {
+        "format": "yolov8",
+        "project": "road-damage-det",
+        "role": "positive",
+        "version": null,
+        "workspace": "baka-1ravj"
+      },
+      "status": "merged"
+    },
+    {
+      "download_seconds": 16.941,
+      "duplicate_images": 0,
+      "empty_labels": 328,
+      "errors": [],
+      "extraction_dir": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\raw\\roboflow_downloads\\positive\\aegis\\pothole-detection-i00zy\\v10\\extracted",
+      "images_accepted": 3162,
+      "images_seen": 3490,
+      "invalid_labels": 0,
+      "labels_seen": 3490,
+      "labels_written": 3162,
+      "missing_labels": 0,
+      "rejected_images": 328,
+      "resolved_version": 10,
+      "source": {
+        "format": "yolov8",
+        "project": "pothole-detection-i00zy",
+        "role": "positive",
+        "version": null,
+        "workspace": "aegis"
+      },
+      "status": "merged"
+    },
+    {
+      "download_seconds": 18.475,
+      "duplicate_images": 0,
+      "empty_labels": 16,
+      "errors": [],
+      "extraction_dir": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\raw\\roboflow_downloads\\positive\\potholes-r7qcn\\pothole-jujbl\\v1\\extracted",
+      "images_accepted": 2755,
+      "images_seen": 2771,
+      "invalid_labels": 0,
+      "labels_seen": 2771,
+      "labels_written": 2755,
+      "missing_labels": 0,
+      "rejected_images": 16,
+      "resolved_version": 1,
+      "source": {
+        "format": "yolov8",
+        "project": "pothole-jujbl",
+        "role": "positive",
+        "version": null,
+        "workspace": "potholes-r7qcn"
+      },
+      "status": "merged"
+    },
+    {
+      "download_seconds": 24.803,
+      "duplicate_images": 2,
+      "empty_labels": 140,
+      "errors": [],
+      "extraction_dir": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\raw\\roboflow_downloads\\positive\\jerry-cooper-tlzkx\\pothole_detection-hfnqo\\v16\\extracted",
+      "images_accepted": 2174,
+      "images_seen": 2316,
+      "invalid_labels": 0,
+      "labels_seen": 2316,
+      "labels_written": 2174,
+      "missing_labels": 0,
+      "rejected_images": 140,
+      "resolved_version": 16,
+      "source": {
+        "format": "yolov8",
+        "project": "pothole_detection-hfnqo",
+        "role": "positive",
+        "version": null,
+        "workspace": "jerry-cooper-tlzkx"
+      },
+      "status": "merged"
+    },
+    {
+      "download_seconds": 63.409,
+      "duplicate_images": 0,
+      "empty_labels": 0,
+      "errors": [],
+      "extraction_dir": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\raw\\roboflow_downloads\\negative\\eastsky\\bdd100k-e3s18\\v1\\extracted",
+      "images_accepted": 3167,
+      "images_seen": 9797,
+      "invalid_labels": 0,
+      "labels_seen": 9797,
+      "labels_written": 3167,
+      "missing_labels": 0,
+      "rejected_images": 6630,
+      "resolved_version": 1,
+      "source": {
+        "format": "yolov8",
+        "project": "bdd100k-e3s18",
+        "role": "negative",
+        "version": null,
+        "workspace": "eastsky"
+      },
+      "status": "merged"
+    },
+    {
+      "download_seconds": 35.676,
+      "duplicate_images": 0,
+      "empty_labels": 0,
+      "errors": [],
+      "extraction_dir": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\raw\\roboflow_downloads\\negative\\transportation-0bexg\\autonomous-driving-40ukk\\v6\\extracted",
+      "images_accepted": 477,
+      "images_seen": 1376,
+      "invalid_labels": 0,
+      "labels_seen": 1376,
+      "labels_written": 477,
+      "missing_labels": 0,
+      "rejected_images": 899,
+      "resolved_version": 6,
+      "source": {
+        "format": "yolov8",
+        "project": "autonomous-driving-40ukk",
+        "role": "negative",
+        "version": null,
+        "workspace": "transportation-0bexg"
+      },
+      "status": "merged"
+    },
+    {
+      "download_seconds": 263.512,
+      "duplicate_images": 0,
+      "empty_labels": 0,
+      "errors": [],
+      "extraction_dir": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\raw\\roboflow_downloads\\negative\\cityscapeseyolo\\cityscapes-hgg49\\v3\\extracted",
+      "images_accepted": 2611,
+      "images_seen": 3171,
+      "invalid_labels": 0,
+      "labels_seen": 3171,
+      "labels_written": 2611,
+      "missing_labels": 0,
+      "rejected_images": 560,
+      "resolved_version": 3,
+      "source": {
+        "format": "yolov8",
+        "project": "cityscapes-hgg49",
+        "role": "negative",
+        "version": null,
+        "workspace": "cityscapeseyolo"
+      },
+      "status": "merged"
+    },
+    {
+      "download_seconds": null,
+      "duplicate_images": 0,
+      "empty_labels": 0,
+      "errors": [
+        "RuntimeError('Could not resolve dataset versions for yoav9113-gmail-com/cityscapes-wqjba: dataset may be private, deleted, or inaccessible with the current API key')"
+      ],
+      "extraction_dir": null,
+      "images_accepted": 0,
+      "images_seen": 0,
+      "invalid_labels": 0,
+      "labels_seen": 0,
+      "labels_written": 0,
+      "missing_labels": 0,
+      "rejected_images": 0,
+      "resolved_version": null,
+      "source": {
+        "format": "yolov8",
+        "project": "cityscapes-wqjba",
+        "role": "negative",
+        "version": null,
+        "workspace": "yoav9113-gmail-com"
+      },
+      "status": "skipped"
+    },
+    {
+      "download_seconds": null,
+      "duplicate_images": 0,
+      "empty_labels": 0,
+      "errors": [
+        "RuntimeError('Could not resolve dataset versions for object-detection-yy9t1/road-segmentation-olxqu: dataset may be private, deleted, or inaccessible with the current API key')"
+      ],
+      "extraction_dir": null,
+      "images_accepted": 0,
+      "images_seen": 0,
+      "invalid_labels": 0,
+      "labels_seen": 0,
+      "labels_written": 0,
+      "missing_labels": 0,
+      "rejected_images": 0,
+      "resolved_version": null,
+      "source": {
+        "format": "yolov8",
+        "project": "road-segmentation-olxqu",
+        "role": "negative",
+        "version": null,
+        "workspace": "object-detection-yy9t1"
+      },
+      "status": "skipped"
+    }
+  ]
+}

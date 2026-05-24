@@ -1,0 +1,4 @@
+{
+  "status": "failed",
+  "detail": "Postgres connection failed after 12 attempts: "
+}

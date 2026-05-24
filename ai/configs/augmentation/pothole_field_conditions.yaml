@@ -1,0 +1,47 @@
+profile_name: pothole_field_conditions_v1
+description: Conservative field-condition augmentation for municipal pothole imagery.
+seed: 42
+max_augmented_copies_per_image: 2
+rules:
+  preserve_bbox_visibility: true
+  min_bbox_area_ratio_after_transform: 0.55
+  reject_if_pothole_center_exits_frame: true
+transforms:
+  brightness_contrast:
+    enabled: true
+    brightness_limit: 0.18
+    contrast_limit: 0.16
+    probability: 0.45
+  gaussian_blur:
+    enabled: true
+    blur_limit: 3
+    probability: 0.18
+  motion_blur:
+    enabled: true
+    blur_limit: 5
+    probability: 0.14
+  rain:
+    enabled: true
+    drop_length: 12
+    drop_width: 1
+    blur_value: 3
+    probability: 0.12
+  shadow:
+    enabled: true
+    shadow_dimension: 5
+    probability: 0.18
+  jpeg_compression:
+    enabled: true
+    quality_lower: 55
+    quality_upper: 92
+    probability: 0.24
+  perspective:
+    enabled: true
+    scale: 0.045
+    probability: 0.18
+  low_light:
+    enabled: true
+    gamma_limit:
+      - 70
+      - 95
+    probability: 0.16

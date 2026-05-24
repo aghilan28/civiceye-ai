@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: civiceye-gpu-worker-runtime
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.persistence.runtimeSize }}
+  {{- if .Values.persistence.runtimeStorageClass }}
+  storageClassName: {{ .Values.persistence.runtimeStorageClass | quote }}
+  {{- end }}

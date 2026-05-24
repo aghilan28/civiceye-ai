@@ -1,0 +1,148 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: civiceye-inference-gpu
+  namespace: civiceye
+  labels:
+    app: civiceye-inference-gpu
+spec:
+  replicas: {{ .Values.worker.gpuReplicas }}
+  selector:
+    matchLabels:
+      app: civiceye-inference-gpu
+  template:
+    metadata:
+      labels:
+        app: civiceye-inference-gpu
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8000"
+    spec:
+      nodeSelector:
+        nvidia.com/gpu.present: "true"
+      tolerations:
+        - key: nvidia.com/gpu
+          operator: Exists
+          effect: NoSchedule
+      containers:
+        - name: worker
+          image: {{ .Values.worker.image | quote }}
+          command: ["python3", "-m", "backend.distributed.worker"]
+          resources:
+            limits:
+              nvidia.com/gpu: {{ .Values.worker.gpuLimit }}
+          envFrom:
+            - configMapRef:
+                name: civiceye-runtime-config
+          env:
+            - name: CIVICEYE_QUEUE_NAME
+              value: {{ .Values.worker.queues.gpu | quote }}
+            - name: CIVICEYE_WORKER_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: CIVICEYE_MODEL_WEIGHTS
+              value: /models/best.pt
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.postgres.urlSecretKey }}
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.redis.urlSecretKey }}
+            - name: CIVICEYE_WORKER_SHARED_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: worker-shared-secret
+          volumeMounts:
+            - name: ai-runtime
+              mountPath: /app/runtime/ai
+            - name: model-artifacts
+              mountPath: /models
+              readOnly: true
+          readinessProbe:
+            exec:
+              command: ["python3", "-c", "from backend.gpu.device import get_device_info; raise SystemExit(0 if get_device_info().cuda_available else 1)"]
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          livenessProbe:
+            exec:
+              command: ["python3", "-c", "from backend.gpu.device import get_device_info; raise SystemExit(0 if get_device_info().cuda_available else 1)"]
+            initialDelaySeconds: 60
+            periodSeconds: 60
+      volumes:
+        - name: ai-runtime
+          persistentVolumeClaim:
+            claimName: civiceye-runtime-media
+        - name: model-artifacts
+          persistentVolumeClaim:
+            claimName: {{ .Values.api.modelPvc }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: civiceye-inference-cpu
+  namespace: civiceye
+  labels:
+    app: civiceye-inference-cpu
+spec:
+  replicas: {{ .Values.worker.cpuReplicas }}
+  selector:
+    matchLabels:
+      app: civiceye-inference-cpu
+  template:
+    metadata:
+      labels:
+        app: civiceye-inference-cpu
+    spec:
+      containers:
+        - name: worker
+          image: {{ .Values.worker.image | quote }}
+          command: ["python3", "-m", "backend.distributed.worker"]
+          envFrom:
+            - configMapRef:
+                name: civiceye-runtime-config
+          env:
+            - name: CIVICEYE_QUEUE_NAME
+              value: {{ .Values.worker.queues.cpu | quote }}
+            - name: CIVICEYE_WORKER_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.postgres.urlSecretKey }}
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.redis.urlSecretKey }}
+            - name: CIVICEYE_WORKER_SHARED_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: worker-shared-secret
+          readinessProbe:
+            exec:
+              command: ["python3", "-c", "import os; from backend.config import settings; from backend.gpu.device import get_device_info; raise SystemExit(0 if settings.worker_shared_secret and get_device_info() is not None else 1)"]
+            initialDelaySeconds: 30
+            periodSeconds: 20
+          livenessProbe:
+            exec:
+              command: ["python3", "-c", "import os; from backend.config import settings; from backend.gpu.device import get_device_info; raise SystemExit(0 if settings.worker_shared_secret and get_device_info() is not None else 1)"]
+            initialDelaySeconds: 60
+            periodSeconds: 30
+          volumeMounts:
+            - name: ai-runtime
+              mountPath: /app/runtime/ai
+      volumes:
+        - name: ai-runtime
+          persistentVolumeClaim:
+            claimName: civiceye-runtime-media

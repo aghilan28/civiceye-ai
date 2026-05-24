@@ -1,0 +1,35 @@
+# Next.js
+.next/
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# AI / ML
+datasets/
+raw/
+processed/
+checkpoints/
+experiments/
+logs/
+weights/
+exports/
+
+# Models
+*.pt
+*.pth
+*.onnx
+*.ckpt
+
+# Environment
+venv/
+.env
+
+# Node
+node_modules/
+
+# Misc
+*.zip
+*.mp4
+*.csv

@@ -1,0 +1,22 @@
+sources:
+  - source_id: local_pothole_yolo
+    name: Local pothole YOLO export
+    source_type: local
+    license: user_provided
+    url:
+    local_path: raw/local_pothole_yolo
+    format: yolo
+    class_map:
+      "0": pothole
+    negative: false
+    citation:
+  - source_id: local_negative_roads
+    name: Local curated negative road images
+    source_type: local
+    license: user_provided
+    url:
+    local_path: raw/local_negative_roads
+    format: negative_images
+    class_map: {}
+    negative: true
+    citation:

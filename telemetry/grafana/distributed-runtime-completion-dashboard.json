@@ -1,0 +1,22 @@
+{
+  "title": "CivicEye Distributed Runtime Completion",
+  "schemaVersion": 39,
+  "version": 1,
+  "tags": ["civiceye", "distributed-runtime"],
+  "panels": [
+    { "type": "timeseries", "title": "Distributed inference topology", "targets": [{ "expr": "sum(civiceye_worker_state) by (state)" }] },
+    { "type": "timeseries", "title": "Worker health", "targets": [{ "expr": "max(civiceye_worker_heartbeat_age_seconds) by (worker_id,state)" }] },
+    { "type": "timeseries", "title": "Queue health", "targets": [{ "expr": "sum(civiceye_queue_depth) by (queue_name,status)" }, { "expr": "histogram_quantile(0.95, sum(rate(civiceye_queue_latency_seconds_bucket[5m])) by (le,queue_name,status))" }] },
+    { "type": "timeseries", "title": "Replay and dead-letter monitoring", "targets": [{ "expr": "sum(civiceye_dead_letter_jobs) by (queue_name)" }, { "expr": "sum(rate(civiceye_dead_letter_replayed_total[5m])) by (queue_name)" }] },
+    { "type": "timeseries", "title": "Orchestration latency", "targets": [{ "expr": "histogram_quantile(0.95, sum(rate(civiceye_orchestration_routing_latency_seconds_bucket[5m])) by (le,queue_name,model_type))" }] },
+    { "type": "timeseries", "title": "Websocket traffic", "targets": [{ "expr": "sum(rate(civiceye_websocket_events_total[5m])) by (event_type,region)" }, { "expr": "sum(rate(civiceye_websocket_bytes_total[5m])) by (direction,region)" }] },
+    { "type": "timeseries", "title": "Redis and Postgres health", "targets": [{ "expr": "civiceye_dependency_health{dependency=~\"redis|postgres\"}" }, { "expr": "sum(rate(civiceye_dependency_reconnects_total[5m])) by (dependency,status)" }] },
+    { "type": "timeseries", "title": "Distributed worker utilization", "targets": [{ "expr": "avg(civiceye_worker_saturation_ratio) by (worker_id,state)" }] },
+    { "type": "timeseries", "title": "GPU utilization ingestion", "targets": [{ "expr": "avg(civiceye_gpu_utilization_percent) by (device)" }, { "expr": "avg(civiceye_gpu_memory_mb) by (device,kind)" }] },
+    { "type": "timeseries", "title": "Tenant activity", "targets": [{ "expr": "sum(rate(civiceye_tenant_usage_total[5m])) by (municipality_id,metric,unit)" }] },
+    { "type": "timeseries", "title": "Failure monitoring", "targets": [{ "expr": "sum(rate(civiceye_inference_failures_total[5m])) by (model_type)" }, { "expr": "sum(rate(civiceye_worker_heartbeat_failures_total[5m])) by (worker_id,reason)" }] },
+    { "type": "timeseries", "title": "Replay recovery monitoring", "targets": [{ "expr": "sum(rate(civiceye_replay_recovery_total[5m])) by (queue_name,status)" }, { "expr": "sum(rate(civiceye_recovery_actions_total[5m])) by (action,status)" }] },
+    { "type": "timeseries", "title": "Worker saturation and draining", "targets": [{ "expr": "max(civiceye_worker_saturation_ratio) by (worker_id,state)" }, { "expr": "max(civiceye_worker_draining) by (worker_id)" }] },
+    { "type": "timeseries", "title": "Inference throughput", "targets": [{ "expr": "sum(rate(civiceye_inference_detections_total[5m])) by (model_type)" }, { "expr": "histogram_quantile(0.95, sum(rate(civiceye_inference_lifecycle_seconds_bucket[5m])) by (le,stage,model_type,queue_name))" }] }
+  ]
+}

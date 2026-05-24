@@ -1,0 +1,10 @@
+{
+  "dataset_id": "civiceye-pothole-foundation",
+  "version": "v0.1.0",
+  "export_targets": [
+    "yolov8"
+  ],
+  "status": "template",
+  "created_for": "Phase A AI data foundation",
+  "notes": "Populate this file after running scripts/export_yolo.py with real data."
+}

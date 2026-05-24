@@ -1,0 +1,19 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: civicops-default
+  group_by: ["alertname", "municipality_id"]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 1h
+
+receivers:
+  - name: civicops-default
+    webhook_configs:
+      - url: https://hooks.slack.com/services/replace/with/secret
+        send_resolved: true
+      - url: https://discord.com/api/webhooks/replace/with/secret
+        send_resolved: true
+      - url: https://events.pagerduty.com/integration/replace/enqueue
+        send_resolved: true

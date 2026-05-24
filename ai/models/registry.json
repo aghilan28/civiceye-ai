@@ -1,0 +1,9 @@
+{
+  "models": [],
+  "promotion_policy": {
+    "requires_dataset_version": true,
+    "requires_validation_report": true,
+    "requires_negative_set_review": true,
+    "requires_latency_report": true
+  }
+}

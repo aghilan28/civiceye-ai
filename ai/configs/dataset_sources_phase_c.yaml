@@ -1,0 +1,12 @@
+sources:
+  - source_id: jaygala24_ivcnz_pothole_yolo
+    name: Pothole Dataset IVCNZ
+    source_type: github_release
+    license: MIT
+    url: https://github.com/jaygala24/pothole-detection/releases/download/v1.0.0/Pothole.Dataset.IVCNZ.zip
+    local_path:
+    format: yolo
+    class_map:
+      "0": pothole
+    negative: false
+    citation: Chitale et al., Pothole Detection and Dimension Estimation System using Deep Learning (YOLO) and Image Processing, IVCNZ 2020.

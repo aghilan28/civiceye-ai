@@ -1,0 +1,17 @@
+classes:
+  - id: 0
+    name: pothole
+    category: road_surface_damage
+    description: Open road-surface depression or cavity with visible boundary.
+    severity_labels:
+      - minor
+      - moderate
+      - severe
+      - critical
+
+future_classes:
+  - road_crack
+  - garbage_accumulation
+  - drainage_overflow
+  - broken_streetlight
+  - water_leakage

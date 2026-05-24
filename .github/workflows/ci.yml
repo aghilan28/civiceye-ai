@@ -1,0 +1,82 @@
+name: CivicEye CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_DB: civiceye
+          POSTGRES_USER: civiceye
+          POSTGRES_PASSWORD: civiceye_dev_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U civiceye -d civiceye"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install AI backend dependencies
+        run: python -m pip install -r ai/requirements.txt
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Prisma schema validation
+        env:
+          DATABASE_URL: postgresql://civiceye:civiceye_dev_password@localhost:5432/civiceye
+        run: npx prisma validate
+
+      - name: AI unit tests
+        run: python -m pytest ai/tests
+
+      - name: Runtime validation
+        env:
+          DATABASE_URL: postgresql://civiceye:civiceye_dev_password@localhost:5432/civiceye
+          REDIS_URL: redis://localhost:6379/0
+          CIVICEYE_JWT_SECRET: ci-runtime-validation-secret
+        run: python scripts/runtime_validation.py
+
+      - name: Build
+        run: npm run build
+
+      - name: Docker Compose config validation
+        run: docker compose config --quiet
+
+      - name: Dependency audit
+        run: npm audit --audit-level=high

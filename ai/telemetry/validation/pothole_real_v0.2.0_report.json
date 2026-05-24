@@ -1,0 +1,1085 @@
+{
+  "annotation_count": 3225,
+  "dataset_id": "civiceye-pothole-real",
+  "issues": [
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "01b1cf8e-2c18-5d0f-a174-017e653cb698",
+      "message": "200x150 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "023eb6e0-c09e-5c88-8b1c-94d7a62c8ea6",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "024cee2b-a34a-55a0-a5c0-164a3c018555",
+      "message": "416x182 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "06230dd8-3b0d-5abb-b370-f31ba5245051",
+      "message": "416x189 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "06338adb-99a8-55ee-935a-5fe2f9feea6b",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "063a3096-9b23-5557-924a-b325e567a056",
+      "message": "300x400 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "089f813c-a401-5bcb-8c68-ec4e2aef86de",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "09f49766-9197-5241-a91b-f11c35403a7f",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "0a7dc158-3815-5243-b440-5c595f0293fb",
+      "message": "416x231 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "0e1c5578-28c0-5e6f-8727-9551b666756d",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "0e1f6690-ba8d-5f23-920a-97c640cd987c",
+      "message": "416x218 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "0f4bbde0-1075-5414-b453-51f4ab6f365f",
+      "message": "416x223 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "1176a4dd-e1f8-5f78-88ff-4d23df2939d1",
+      "message": "300x212 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "11d48a14-22c7-5d2a-95e3-634514c9445e",
+      "message": "416x233 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "1599f70f-6723-5e7e-a907-3cbff4fda92b",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "17c9073a-89c8-5f2d-8d92-4d516b85c214",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "19520e8f-dee4-50cd-a0cc-0ae46c23892f",
+      "message": "356x169 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "19f70855-2c0a-5d6c-b910-3777f498340d",
+      "message": "300x168 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "1bbce8bc-a633-5351-ae7c-a8088391d8af",
+      "message": "300x300 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "1c884706-30e1-5f87-b4cb-db69ad0a4466",
+      "message": "325x216 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "1d3e3aba-9c8a-5d87-8ed8-4d89a565a033",
+      "message": "416x197 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "1ded7da0-815a-51f9-9323-07353b1357c1",
+      "message": "300x369 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "216b1525-f6c2-5899-9151-7aa3b4252b1b",
+      "message": "416x208 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "217b68eb-f689-5b53-886b-70e63ff0ecf5",
+      "message": "300x442 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "21b3213a-b3fd-585c-9b1e-5ebbf591fbc9",
+      "message": "400x206 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "21fb56b5-71be-5ba8-ac16-85895a7c5795",
+      "message": "300x400 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "220c9721-638b-50ee-b136-651205b5438f",
+      "message": "300x403 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "22c1be41-c8aa-51f4-bd38-3d05dfc01f84",
+      "message": "416x218 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "245b2412-2f21-5c61-8975-620cf4722ec1",
+      "message": "300x442 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "25eb605c-9442-5253-87da-fb309b820762",
+      "message": "416x235 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "2655e4c2-6614-550f-b1e1-bf51d1a29862",
+      "message": "416x231 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "2736e5b1-7a7e-5e17-ae1a-e6bb50f10979",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "289e455c-b95a-5978-b3fa-f40fc295aa41",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "293af102-6c65-5669-8e44-7090b028bafc",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "2c513ac6-f362-52f0-9779-6725d797a251",
+      "message": "204x170 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "3510efa8-5d3e-550a-adaf-6de976bda4a8",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "3afbca37-4474-5b21-9e83-3a05eb76d61a",
+      "message": "416x208 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "3b61f39d-cac2-5e4b-b96c-a557c075eeab",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "3d654aa9-7052-5198-bbea-f795ac2f5e20",
+      "message": "416x182 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "3e791620-d5f3-579e-a94a-2db237a38013",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "3ed989a9-b2f3-5074-9305-9e9757bd5dc8",
+      "message": "225x300 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "3fe7dfd3-c9e3-5003-a598-ef41a74e42a2",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "40250afc-3ab9-576d-871e-a41f221a4b9f",
+      "message": "300x300 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "4583cd7c-05d2-5d2a-9bf3-b0e1bd021c49",
+      "message": "416x208 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "46287086-30d1-5913-b289-f81d09de64c7",
+      "message": "240x180 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "4682b10a-0f20-5220-852c-62482246550f",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "4c990158-b506-55b5-99ce-c68690724696",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "4d563a56-4384-5af6-8015-7f5d8adaa010",
+      "message": "200x200 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "4e303ef9-e53f-5dc9-9b3d-212e9bc63a1e",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "4ead027b-ac97-5246-9d22-8d360c44c2a4",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "4ec9ffd1-28fc-5b0b-bdf3-06ce884a759e",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "516138db-addb-5a5e-9c1f-e1bec0eca3fd",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "51d4aec1-5f14-5bbf-a5fc-7d1b9e266b94",
+      "message": "200x150 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "52718251-087a-5236-8a63-1a696f053d98",
+      "message": "300x444 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "5290aa57-7ff6-5775-b3a1-100d033add29",
+      "message": "300x400 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "55bc01e0-17b9-5e54-af0a-547a37784c50",
+      "message": "300x399 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "565be5c0-3e37-5251-9564-0bebe60c6165",
+      "message": "300x357 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "5754377a-0ac7-57d9-ab27-a941caecaa9f",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "597ceefc-6e6a-5779-9773-94ff1566dfbe",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "5acb3ada-deca-55a3-b860-3e153fc48e0e",
+      "message": "416x145 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "5b84a56d-af79-5a91-acba-44cfc04bb5c8",
+      "message": "303x446 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "5c755d3f-c680-54ef-a8fc-c766e9bbde10",
+      "message": "416x233 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "5d8bce78-a17b-5e5e-b828-45dba174dff4",
+      "message": "416x129 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "602490f9-6bc4-5e3c-8265-cf8c88490f4e",
+      "message": "300x397 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "6104acee-b841-5ff3-853f-bdcd4f6d7f19",
+      "message": "416x207 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "61c0e391-be77-5e88-868e-193d65b80cba",
+      "message": "416x237 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "62a0c90e-2a55-5915-a0d0-8f355a54a816",
+      "message": "416x233 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "647df2bc-0cf2-501d-b270-f11e9089f260",
+      "message": "200x200 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "6915d40b-51f1-5e74-a604-f80b34fcd5fd",
+      "message": "300x300 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "69623efd-2390-52e0-83a4-9bd8b4b9fb01",
+      "message": "416x218 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "6a014eed-5e47-55e1-9b40-a5146f7d0ae5",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "6a77d659-2ae2-5618-9221-ab31d8b0f04c",
+      "message": "300x199 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "6ce9b545-2ed0-5e81-90e2-d427d8881487",
+      "message": "416x226 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "6dceb184-03f7-5bea-8ca3-0c40af666629",
+      "message": "303x300 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "6dfefb2e-e457-53cc-a076-627775894da0",
+      "message": "300x450 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "6f57c39e-80fa-54df-94f8-761b0da067ba",
+      "message": "416x217 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "6f75b2c6-d89e-5efc-b9ff-f3772f1dd98a",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "71db098c-5d99-5ece-8ccf-13d9efbb1331",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "72c2b681-1e4b-5e9e-b94a-888b6e2323b5",
+      "message": "416x213 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "72e4b0b4-22c7-5080-a75a-1d83bb035e76",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "73b6f721-6222-5de5-a14d-0b4b6682c273",
+      "message": "416x237 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "747f59ae-31f8-5a92-a06d-5edaddcdcbb4",
+      "message": "416x229 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "7486e6e3-1838-52db-be76-e889d17cedff",
+      "message": "300x451 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "76358200-4b7e-5adb-a6d1-7b57fec7d0cb",
+      "message": "300x200 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "764e0981-4175-5491-a5dc-16a7202ed5ca",
+      "message": "300x400 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "77f60b92-a5f5-5c03-8005-e9e057a0d376",
+      "message": "300x400 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "77fcdcd2-884a-5d76-b160-ad9e81b056db",
+      "message": "416x201 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "795aa913-bb4a-5822-bd06-1c1063eee3b8",
+      "message": "400x225 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "7a438975-e41f-5438-aacf-c36d7991bdbe",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "7d7e6b21-f443-5de3-b2ec-60fbfb6e5d1e",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "7e2aa25b-47b2-5b35-b517-a5adad93f38a",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "7f087794-63b4-5db9-87f2-c8de18bdfa0d",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "7f1eac53-b707-5fbe-8db5-bb56b551f2cb",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "7f792c90-e2a5-5b8e-a76f-ccda3f01017f",
+      "message": "300x300 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "7fe7389e-cc07-5b72-887d-b04e9fd1d384",
+      "message": "225x150 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "810a1752-46e4-521a-983f-6c65dac4fe8c",
+      "message": "416x231 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "84239118-778a-58cb-9f78-f161ef653a21",
+      "message": "300x200 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "85cc1fc2-f1f9-5162-9098-46e1a82c3389",
+      "message": "416x238 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "8a305bc9-33ee-5dc4-94c2-8101d3c67951",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "8ae218bd-695a-57a9-b05e-b3e5bc111a95",
+      "message": "300x356 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "8e37acbb-e670-57ce-8e0d-2762ef0d9a62",
+      "message": "416x218 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "8f1c1609-d6ec-57ac-aa57-1a55e0120734",
+      "message": "416x208 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "9184fedb-339d-550d-961f-82214588ead9",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "941c724e-2669-5d9a-b0c7-80f79e1243c6",
+      "message": "416x216 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "95aa56f2-591d-513b-a50f-df9e9156132e",
+      "message": "416x140 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "9644a3f9-c0fd-5050-ac18-3dbb8c8cadb5",
+      "message": "416x184 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "992949e9-0516-5d85-a642-eb9dc386d29d",
+      "message": "416x208 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "9b13cfec-3d43-5d1a-bae9-63046c747376",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "9bbfca65-bd2f-5a9a-b83e-d0097c5d0f71",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "9c61cb0c-4d67-5e24-b871-49dbc3ccc6d3",
+      "message": "270x176 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "9cd1eb85-1109-5746-8568-62da987f635f",
+      "message": "300x300 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "a08973be-a651-5410-bc48-6d26577188db",
+      "message": "416x235 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "a1f09f00-2e39-5e9e-af39-3ef05a133f5e",
+      "message": "416x218 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "a45dae68-e932-5025-ab16-706c496a8bd2",
+      "message": "416x230 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "a50aa7a5-65ac-5acd-8202-c6a846b261b1",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "a646cffe-b9b4-5580-a23b-5fedde5699db",
+      "message": "400x160 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "a6c96d58-2e5f-554a-9ff7-e5f1ab08389c",
+      "message": "135x180 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "a847b2d3-f8c7-55c3-9ae6-38547c502378",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "a84f3e09-0f64-505c-89b6-fcbe96417cb5",
+      "message": "416x208 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "ace96041-f943-5556-a530-23d251ad4034",
+      "message": "416x198 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "b1e84881-3da1-554c-826f-721642942c79",
+      "message": "416x208 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "b34853a0-91f4-5865-b36b-8514b28ea316",
+      "message": "416x231 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "b350afe1-6522-5e98-8876-f1d66783f250",
+      "message": "400x225 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "b66aa13d-bb08-534d-84dd-8620c333d745",
+      "message": "416x220 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "b817ca90-c976-516a-9918-947a636d3564",
+      "message": "416x237 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "b8ff9cd3-d651-5f4a-aa3c-840f5fb11eaf",
+      "message": "280x220 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "bd1eb0af-b4a0-5e48-a8d6-5262d25f3c85",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "bebf7409-4481-527a-aaf0-7b4bf01b1e39",
+      "message": "300x224 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "c007c941-e0b8-5f1a-ad85-d513b232efb0",
+      "message": "300x440 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "c37a1335-913a-5d00-b0ba-2a7f8b8c9d41",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "c5a7d748-92e1-5c56-ac8e-ccd694f2c418",
+      "message": "300x400 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "c7cb87d0-bc04-5cf6-a5ac-16c9d305dcdf",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "c96492bb-7269-5381-8179-aa8f0cfe47c8",
+      "message": "300x400 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "ca20bcc0-430b-5b85-b079-f8836e163612",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "ca8c2abd-815e-5acf-a9a3-732703a0d0f6",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "cca43b92-58a4-5eec-901e-ca53377fbead",
+      "message": "416x227 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "cde3a05b-a610-5df9-9845-8268f929551d",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "ce8edaa1-bff5-566f-bd13-422b36e20c62",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "cea1ec14-4d65-511a-9c33-cbe931ef0adc",
+      "message": "300x400 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "cecdd487-4734-56c4-aec1-d8581c07f8ee",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "cf88d5e6-4a6b-57dc-971e-12790fc37d3b",
+      "message": "416x224 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "cfe6ec39-ee09-56e2-aa74-160af0159d14",
+      "message": "416x231 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "cfee9b62-5a6e-508b-a90e-c5df5d344931",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "d14b3eca-e84d-579f-b188-2c0d18feea00",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "d157b634-dfa4-5f7e-be70-16dc3eb13730",
+      "message": "299x129 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "d2409d9a-2009-5307-821c-75042210b921",
+      "message": "416x184 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "d7051e99-a9d3-5d01-8794-6d0bb35ed45f",
+      "message": "416x208 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "d7ce2fd9-2983-52b0-82f1-bc4784f45c86",
+      "message": "300x200 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "d8d2f2ab-e655-5034-b445-58301c259e46",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "d8dbed32-ac29-5690-b12f-1707716044b4",
+      "message": "269x178 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "d9c518e2-5bf9-53ce-83d1-4e859844a212",
+      "message": "416x233 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "da0b7d31-41af-58c1-9784-ef8e3f2b5d34",
+      "message": "416x226 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "dbefd49b-f734-50ab-851c-9d6d5ed5efa0",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "dcad9396-5f54-5faf-a650-22db276e210a",
+      "message": "416x231 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "df3b7ee9-f6c4-53dc-b63a-b6e9a4f9ae0f",
+      "message": "416x174 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "df41ff52-63eb-58fc-84ae-843ff9fb136e",
+      "message": "300x533 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "e2072e2e-9f2c-591f-a002-9f1a516329bd",
+      "message": "416x153 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "e58fe5bc-0fcc-5afe-b496-1c279a6aec8f",
+      "message": "300x400 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "ea48eb83-ab25-5e70-843f-819613778493",
+      "message": "295x188 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "efda57a7-cb86-5be3-af17-ce349440b05c",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "f0935b11-ff4e-589f-b293-4d397c2ab070",
+      "message": "300x225 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "f2ad0743-3d5a-580f-9ef3-78d46e439f3f",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "f5329933-2f28-5611-b650-a2588636df0d",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "f605eb6f-c319-5f53-b27d-bc0194e23c00",
+      "message": "416x208 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "f6210492-16c1-5911-abf2-21bc375bfe21",
+      "message": "240x135 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "f71fb552-48c9-5a7b-b1bc-19adc5f12f14",
+      "message": "416x231 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "f99b5f88-7399-5816-a214-c2f357729552",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "f9ba3522-3e12-598d-93f2-9c8fab9b00a2",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "fbe8b165-231d-5c42-aa01-3e6577158a38",
+      "message": "416x181 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "fc0b3205-a080-5ba8-be40-d25d125b2b4c",
+      "message": "416x218 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "fc3d657c-597a-51b5-a4ef-e49e2d9b1efa",
+      "message": "416x208 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "fc772155-27d4-5273-99f4-6138c2cf77f3",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "fcc63efe-0675-5a67-8b1d-6051a79ac48b",
+      "message": "416x234 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "fe848db1-4cb5-5406-b8cb-eea6c6ba8c23",
+      "message": "268x178 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "ff086881-3893-56ec-8a27-bdd3aeac4db6",
+      "message": "350x237 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "LOW_RESOLUTION",
+      "image_id": "ff0ae935-4a20-5369-92d4-b0c9a9c957f9",
+      "message": "416x218 below recommended 320x240",
+      "severity": "warning"
+    },
+    {
+      "code": "NO_NEGATIVES",
+      "image_id": "DATASET",
+      "message": "Dataset has no negative road images",
+      "severity": "error"
+    }
+  ],
+  "negative_images": 0,
+  "passed": false,
+  "positive_images": 967,
+  "severity_counts": {
+    "critical": 401,
+    "minor": 1825,
+    "moderate": 658,
+    "severe": 341
+  },
+  "source_counts": {
+    "jaygala24_ivcnz_pothole_yolo": 967
+  },
+  "split_counts": {
+    "unassigned": 967
+  },
+  "total_images": 967,
+  "version": "v0.2.0"
+}

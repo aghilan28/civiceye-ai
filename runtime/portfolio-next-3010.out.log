@@ -1,0 +1,79 @@
+
+> civiceye@0.1.0 dev
+> next dev -p 3010
+
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3010
+   - Network:      http://192.168.1.102:3010
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ✓ Ready in 8.2s
+ ○ Compiling / ...
+ ✓ Compiled / in 20.5s (1475 modules)
+ ✓ Compiled in 3.3s (650 modules)
+ GET / 200 in 928ms
+ ○ Compiling /ai/upload ...
+ ✓ Compiled /ai/upload in 2.2s (1493 modules)
+ GET /ai/upload 200 in 3326ms
+ ○ Compiling /operations/live ...
+ ✓ Compiled /operations/live in 1388ms (1522 modules)
+ GET /operations/live 200 in 2026ms
+ ○ Compiling /operations/map ...
+ ✓ Compiled /operations/map in 4.3s (1574 modules)
+ GET /operations/map 200 in 5419ms
+ ○ Compiling /operations/analytics ...
+ ✓ Compiled /operations/analytics in 1057ms (1562 modules)
+ GET /operations/analytics 200 in 1937ms
+ GET / 200 in 1286ms
+ GET / 200 in 180ms
+ GET / 200 in 189ms
+ ○ Compiling /ai/live ...
+ ✓ Compiled /ai/live in 2.6s (1530 modules)
+ GET /ai/live 200 in 3612ms
+ GET /ai/live 200 in 468ms
+ GET / 200 in 1287ms
+ ○ Compiling /demo ...
+ ✓ Compiled /admin in 6.9s (1617 modules)
+ GET /demo 200 in 7737ms
+ GET /ai/live 200 in 7591ms
+ GET /admin 200 in 7296ms
+ GET /ai/live 200 in 320ms
+ GET /admin 200 in 439ms
+ GET /admin 200 in 247ms
+ GET /admin 200 in 117ms
+ GET /demo 200 in 90ms
+ ○ Compiling /report ...
+ ✓ Compiled /report in 5.3s (1661 modules)
+ GET /report 200 in 5894ms
+ GET /report 200 in 101ms
+ GET /report 200 in 93ms
+ GET /report 200 in 110ms
+ GET /report 200 in 99ms
+ GET /report 200 in 98ms
+ GET /report 200 in 96ms
+ GET /report 200 in 108ms
+ GET / 200 in 243ms
+ ○ Compiling /ai/live ...
+ ✓ Compiled /ai/live in 3.1s (923 modules)
+ GET /ai/live 200 in 3937ms
+ GET /report 200 in 114ms
+ ○ Compiling /reports ...
+ ✓ Compiled /reports in 3.7s (1711 modules)
+ GET /reports 200 in 4486ms
+ ✓ Compiled in 980ms (778 modules)
+ GET /reports 200 in 469ms
+ GET /reports 200 in 117ms
+ ○ Compiling /notifications ...
+ ✓ Compiled /notifications in 1605ms (1722 modules)
+ GET /notifications 200 in 1877ms
+ GET /notifications 200 in 97ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 2.9s (1764 modules)
+ GET /dashboard 200 in 3467ms
+ GET /dashboard 200 in 106ms
+ GET /dashboard 200 in 63ms
+ GET /ai/live 200 in 96ms
+ GET /dashboard 200 in 79ms
+ GET / 200 in 203ms

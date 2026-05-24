@@ -1,0 +1,154 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: civiceye-api
+  namespace: civiceye
+  labels:
+    app: civiceye-api
+spec:
+  replicas: {{ .Values.api.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: civiceye-api
+  template:
+    metadata:
+      labels:
+        app: civiceye-api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8000"
+    spec:
+      terminationGracePeriodSeconds: 45
+      containers:
+        - name: api
+          image: {{ .Values.api.image | quote }}
+          imagePullPolicy: {{ .Values.global.imagePullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: civiceye-runtime-config
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.postgres.urlSecretKey }}
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.redis.urlSecretKey }}
+            - name: CIVICEYE_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: jwt-secret
+            - name: CIVICEYE_WORKER_SHARED_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: worker-shared-secret
+            - name: CIVICEYE_INFERENCE_SHARED_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.secrets.inferenceSharedSecretKey }}
+            - name: CIVICEYE_OBJECT_STORAGE_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.secrets.objectStorageAccessKey }}
+            - name: CIVICEYE_OBJECT_STORAGE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.secrets.objectStorageSecretKey }}
+            - name: CIVICEYE_MODEL_WEIGHTS
+              value: /models/best.pt
+            - name: CIVICEYE_REGION
+              value: {{ .Values.global.region | quote }}
+            - name: CIVICEYE_NODE_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          readinessProbe:
+            httpGet:
+              path: /runtime/diagnostics
+              port: 8000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 45
+            periodSeconds: 20
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "sleep 15"]
+          volumeMounts:
+            - name: ai-runtime
+              mountPath: /app/runtime/ai
+            - name: model-artifacts
+              mountPath: /models
+              readOnly: true
+      volumes:
+        - name: ai-runtime
+          persistentVolumeClaim:
+            claimName: civiceye-runtime-media
+        - name: model-artifacts
+          persistentVolumeClaim:
+            claimName: {{ .Values.api.modelPvc }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: civiceye-api
+  namespace: civiceye
+spec:
+  selector:
+    app: civiceye-api
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: civiceye-api
+  namespace: civiceye
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: civiceye-api
+  minReplicas: {{ .Values.api.minReplicas }}
+  maxReplicas: {{ .Values.api.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.api.cpuTarget }}
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: civiceye-api
+  namespace: civiceye
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: civiceye-api

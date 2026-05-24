@@ -1,0 +1,35 @@
+{
+  "title": "CivicEye Infrastructure Health",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Queue depth",
+      "targets": [
+        { "expr": "sum(civiceye_queue_depth) by (queue_name, status)" }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Websocket throughput",
+      "targets": [
+        { "expr": "sum(rate(civiceye_websocket_events_total[5m])) by (region)" }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "GPU memory",
+      "targets": [
+        { "expr": "civiceye_gpu_memory_mb" }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Database latency",
+      "targets": [
+        { "expr": "histogram_quantile(0.95, sum(rate(civiceye_db_latency_ms_bucket[5m])) by (le, operation))" }
+      ]
+    }
+  ]
+}

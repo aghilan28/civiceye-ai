@@ -1,0 +1,114 @@
+ Image you-are-now-acting-as-principal-civiceye-web Building 
+ Image you-are-now-acting-as-principal-ai-backend Building 
+ Image you-are-now-acting-as-principal-inference-worker-gpu Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.91kB done
+#1 DONE 0.0s
+
+#2 [civiceye-web internal] load build definition from Dockerfile
+#2 transferring dockerfile: 870B 0.0s done
+#2 DONE 0.1s
+
+#3 [inference-worker-gpu internal] load build definition from Dockerfile.ai
+#3 transferring dockerfile: 1.08kB 0.0s done
+#3 DONE 0.1s
+
+#4 [ai-backend internal] load metadata for docker.io/nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04
+#4 ...
+
+#5 [auth] nvidia/cuda:pull token for registry-1.docker.io
+#5 DONE 0.0s
+
+#6 [auth] library/node:pull token for registry-1.docker.io
+#6 DONE 0.0s
+
+#7 [civiceye-web internal] load metadata for docker.io/library/node:22-alpine
+#7 DONE 3.4s
+
+#4 [inference-worker-gpu internal] load metadata for docker.io/nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04
+#4 DONE 3.4s
+
+#8 [inference-worker-gpu internal] load .dockerignore
+#8 transferring context: 315B 0.0s done
+#8 DONE 0.1s
+
+#9 [civiceye-web internal] load build context
+#9 DONE 0.0s
+
+#10 [inference-worker-gpu internal] load build context
+#10 DONE 0.0s
+
+#11 [inference-worker-gpu 1/9] FROM docker.io/nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04@sha256:2fcc4280646484290cc50dce5e65f388dd04352b07cbe89a635703bd1f9aedb6
+#11 resolve docker.io/nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04@sha256:2fcc4280646484290cc50dce5e65f388dd04352b07cbe89a635703bd1f9aedb6
+#11 resolve docker.io/nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04@sha256:2fcc4280646484290cc50dce5e65f388dd04352b07cbe89a635703bd1f9aedb6 0.1s done
+#11 DONE 0.1s
+
+#12 [civiceye-web deps 1/4] FROM docker.io/library/node:22-alpine@sha256:968df39aedcea65eeb078fb336ed7191baf48f972b4479711397108be0966920
+#12 resolve docker.io/library/node:22-alpine@sha256:968df39aedcea65eeb078fb336ed7191baf48f972b4479711397108be0966920 0.1s done
+#12 DONE 0.1s
+
+#13 [ai-backend 2/9] WORKDIR /app
+#13 CACHED
+
+#14 [ai-backend 3/9] RUN apt-get update   && apt-get install -y --no-install-recommends python3 python3-pip ffmpeg libgl1 libglib2.0-0   && rm -rf /var/lib/apt/lists/*
+#14 CACHED
+
+#15 [civiceye-web runner 3/6] RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
+#15 CACHED
+
+#16 [civiceye-web deps 2/4] WORKDIR /app
+#16 CACHED
+
+#10 [ai-backend internal] load build context
+#10 transferring context: 6.98MB 4.8s
+#10 transferring context: 14.61MB 9.5s done
+#10 ...
+
+#9 [civiceye-web internal] load build context
+#9 transferring context: 14.63MB 9.6s done
+#9 DONE 12.7s
+
+#10 [ai-backend internal] load build context
+#10 DONE 12.8s
+
+#17 [inference-worker-gpu 5/9] RUN python3 -m pip install --upgrade pip   && python3 -m pip install -r ai/requirements.txt
+#17 CACHED
+
+#18 [inference-worker-gpu 6/9] COPY backend ./backend
+#18 CACHED
+
+#19 [inference-worker-gpu 7/9] COPY ai ./ai
+#19 CACHED
+
+#20 [inference-worker-gpu 8/9] COPY yolov8n.pt ./yolov8n.pt
+#20 ERROR: failed to calculate checksum of ref w5e58ijpinzo4p57x2c8c7o0z::t26fd5270foe2khpsjr105r7o: "/yolov8n.pt": not found
+
+#21 [civiceye-web deps 3/4] COPY package.json package-lock.json ./
+#21 CACHED
+
+#22 [inference-worker-gpu 4/9] COPY ai/requirements.txt ./ai/requirements.txt
+#22 CANCELED
+
+#23 [civiceye-web deps 4/4] RUN npm ci
+#23 CANCELED
+------
+ > [inference-worker-gpu 8/9] COPY yolov8n.pt ./yolov8n.pt:
+------
+Dockerfile.ai:19
+
+--------------------
+
+  17 |     COPY backend ./backend
+
+  18 |     COPY ai ./ai
+
+  19 | >>> COPY yolov8n.pt ./yolov8n.pt
+
+  20 |     
+
+  21 |     ENV CIVICEYE_STORAGE_DIR=/app/runtime/ai
+
+--------------------
+
+target inference-worker-gpu: failed to solve: failed to compute cache key: failed to calculate checksum of ref w5e58ijpinzo4p57x2c8c7o0z::t26fd5270foe2khpsjr105r7o: "/yolov8n.pt": not found
+

@@ -1,0 +1,29 @@
+{
+  "created_at": "2026-05-16 10:01:19",
+  "sources": [
+    "smartathon/new-pothole-detection@vNone",
+    "brad-dwyer/pothole-voxrl@vNone",
+    "baka-1ravj/road-damage-det@vNone",
+    "aegis/pothole-detection-i00zy@vNone",
+    "potholes-r7qcn/pothole-jujbl@vNone",
+    "jerry-cooper-tlzkx/pothole_detection-hfnqo@vNone"
+  ],
+  "unified_class": "pothole",
+  "total_images": 20060,
+  "total_labels": 20060,
+  "splits": {
+    "train": {
+      "images": 13690,
+      "labels": 13690
+    },
+    "valid": {
+      "images": 4242,
+      "labels": 4242
+    },
+    "test": {
+      "images": 2128,
+      "labels": 2128
+    }
+  },
+  "data_yaml": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\merged\\pothole_combined\\data.yaml"
+}

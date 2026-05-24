@@ -1,0 +1,57 @@
+{
+  "timestamp": "2026-05-16 09:38:53",
+  "workspace": "smartathon",
+  "project": "new-pothole-detection",
+  "version": "1",
+  "format": "yolov8",
+  "dataset_path": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\raw\\pothole_dataset",
+  "total_images": 9240,
+  "total_labels": 9240,
+  "class_names": [
+    "Pothole"
+  ],
+  "class_distribution": {
+    "Pothole": 23697
+  },
+  "splits": {
+    "train": {
+      "name": "train",
+      "images": 6091,
+      "labels": 6091,
+      "matched": 6091,
+      "unmatched_images": [],
+      "unmatched_labels": [],
+      "class_counts": {
+        "Pothole": 15830
+      }
+    },
+    "valid": {
+      "name": "valid",
+      "images": 2094,
+      "labels": 2094,
+      "matched": 2094,
+      "unmatched_images": [],
+      "unmatched_labels": [],
+      "class_counts": {
+        "Pothole": 5214
+      }
+    },
+    "test": {
+      "name": "test",
+      "images": 1055,
+      "labels": 1055,
+      "matched": 1055,
+      "unmatched_images": [],
+      "unmatched_labels": [],
+      "class_counts": {
+        "Pothole": 2653
+      }
+    }
+  },
+  "yaml_valid": true,
+  "yaml_path": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\raw\\pothole_dataset\\data.yaml",
+  "download_duration_sec": 64.25089597702026,
+  "validation_passed": true,
+  "errors": [],
+  "warnings": []
+}

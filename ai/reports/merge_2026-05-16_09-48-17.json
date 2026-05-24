@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-05-16 09:48:17",
+  "sources": [
+    "smartathon/new-pothole-detection@v1",
+    "brad-dwyer/pothole-voxrl@v1"
+  ],
+  "unified_class": "pothole",
+  "total_images": 9905,
+  "total_labels": 9905,
+  "splits": {
+    "train": {
+      "images": 6556,
+      "labels": 6556
+    },
+    "valid": {
+      "images": 2227,
+      "labels": 2227
+    },
+    "test": {
+      "images": 1122,
+      "labels": 1122
+    }
+  },
+  "data_yaml": "C:\\Users\\AKILA\\Documents\\Codex\\2026-05-15\\you-are-now-acting-as-principal\\ai\\datasets\\merged\\pothole_combined\\data.yaml"
+}

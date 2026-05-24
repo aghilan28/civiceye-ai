@@ -1,0 +1,19 @@
+
+> civiceye@0.1.0 dev
+> next dev --port 3003
+
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3003
+   - Network:      http://192.168.1.5:3003
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ✓ Ready in 6.1s
+ ○ Compiling /operations/map ...
+ ✓ Compiled /operations/map in 8.8s (1384 modules)
+ ✓ Compiled in 3.2s (626 modules)
+ GET /operations/map 200 in 12172ms
+ ✓ Compiled in 320ms (612 modules)
+ GET /operations/map 200 in 382ms
+ GET /operations/map 200 in 656ms

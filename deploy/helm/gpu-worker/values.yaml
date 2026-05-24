@@ -1,0 +1,46 @@
+image:
+  repository: ghcr.io/civiceye/civiceye-ai-backend
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+worker:
+  idPrefix: gpu-worker
+  queueNames: gpu.emergency,gpu.high,gpu.standard
+  concurrency: 1
+  modelWeights: /models/best.pt
+  storageDir: /app/runtime/ai
+  heartbeatIntervalSeconds: 15
+  replayWindowSeconds: 300
+
+backend:
+  url: https://api.civiceye.example.com
+
+secrets:
+  name: civiceye-gpu-worker-secrets
+  databaseUrlKey: database-url
+  redisUrlKey: redis-url
+  workerSecretKey: worker-shared-secret
+  objectStorageAccessKey: object-storage-access-key
+  objectStorageSecretKey: object-storage-secret-key
+
+gpu:
+  limit: 1
+  nodeSelector:
+    nvidia.com/gpu.present: "true"
+  tolerations:
+    - key: nvidia.com/gpu
+      operator: Exists
+      effect: NoSchedule
+
+persistence:
+  modelPvc: civiceye-model-artifacts
+  runtimeStorageClass: ""
+  runtimeSize: 50Gi
+
+objectStorage:
+  provider: s3
+  bucket: civiceye-media
+  region: ap-south-1
+  endpoint: ""

@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: civiceye-gpu-worker
+  labels:
+    app: civiceye-gpu-worker
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: civiceye-gpu-worker
+  template:
+    metadata:
+      labels:
+        app: civiceye-gpu-worker
+      annotations:
+        prometheus.io/scrape: "false"
+    spec:
+      nodeSelector:
+{{ toYaml .Values.gpu.nodeSelector | indent 8 }}
+      tolerations:
+{{ toYaml .Values.gpu.tolerations | indent 8 }}
+      containers:
+        - name: worker
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["python3", "-m", "backend.distributed.worker"]
+          resources:
+            limits:
+              nvidia.com/gpu: {{ .Values.gpu.limit }}
+          env:
+            - name: CIVICEYE_BACKEND_URL
+              value: {{ .Values.backend.url | quote }}
+            - name: CIVICEYE_WORKER_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: CIVICEYE_QUEUE_NAMES
+              value: {{ .Values.worker.queueNames | quote }}
+            - name: CIVICEYE_WORKER_CONCURRENCY
+              value: {{ .Values.worker.concurrency | quote }}
+            - name: CIVICEYE_WORKER_HEARTBEAT_INTERVAL_SECONDS
+              value: {{ .Values.worker.heartbeatIntervalSeconds | quote }}
+            - name: CIVICEYE_WORKER_REPLAY_WINDOW_SECONDS
+              value: {{ .Values.worker.replayWindowSeconds | quote }}
+            - name: CIVICEYE_MODEL_WEIGHTS
+              value: {{ .Values.worker.modelWeights | quote }}
+            - name: CIVICEYE_STORAGE_DIR
+              value: {{ .Values.worker.storageDir | quote }}
+            - name: CIVICEYE_OBJECT_STORAGE_PROVIDER
+              value: {{ .Values.objectStorage.provider | quote }}
+            - name: CIVICEYE_OBJECT_STORAGE_BUCKET
+              value: {{ .Values.objectStorage.bucket | quote }}
+            - name: CIVICEYE_OBJECT_STORAGE_REGION
+              value: {{ .Values.objectStorage.region | quote }}
+            - name: CIVICEYE_OBJECT_STORAGE_ENDPOINT
+              value: {{ .Values.objectStorage.endpoint | quote }}
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.secrets.databaseUrlKey }}
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.secrets.redisUrlKey }}
+            - name: CIVICEYE_WORKER_SHARED_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.secrets.workerSecretKey }}
+            - name: CIVICEYE_OBJECT_STORAGE_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.secrets.objectStorageAccessKey }}
+            - name: CIVICEYE_OBJECT_STORAGE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: {{ .Values.secrets.objectStorageSecretKey }}
+          volumeMounts:
+            - name: runtime
+              mountPath: /app/runtime/ai
+            - name: model-artifacts
+              mountPath: /models
+              readOnly: true
+          readinessProbe:
+            exec:
+              command: ["python3", "-c", "from backend.gpu.device import get_device_info; raise SystemExit(0 if get_device_info().cuda_available else 1)"]
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          livenessProbe:
+            exec:
+              command: ["python3", "-c", "from backend.gpu.device import get_device_info; raise SystemExit(0 if get_device_info().cuda_available else 1)"]
+            initialDelaySeconds: 60
+            periodSeconds: 60
+      volumes:
+        - name: runtime
+          persistentVolumeClaim:
+            claimName: civiceye-gpu-worker-runtime
+        - name: model-artifacts
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.modelPvc }}

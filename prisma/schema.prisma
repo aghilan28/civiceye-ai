@@ -1,0 +1,919 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  CITIZEN
+  FIELD_WORKER
+  SUPERVISOR
+  MUNICIPALITY_ADMIN
+  CONTRACTOR
+  EMERGENCY_OPERATOR
+  SYSTEM_ADMIN
+}
+
+enum DepartmentType {
+  ROADS
+  DRAINAGE
+  UTILITIES
+  SMART_INFRASTRUCTURE
+}
+
+enum IncidentStatus {
+  DETECTED
+  VERIFIED
+  ASSIGNED
+  IN_PROGRESS
+  TEMPORARY_FIX
+  COMPLETED
+  REOPENED
+}
+
+enum IncidentSeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum DetectionSource {
+  BROWSER_GEOLOCATION
+  MOBILE_GPS
+  UPLOADED_METADATA
+  EXIF
+  DASHCAM_GPS
+  MANUAL
+}
+
+enum MediaAssetType {
+  DETECTION_IMAGE
+  DETECTION_VIDEO
+  ANNOTATED_OUTPUT
+  REPAIR_BEFORE
+  REPAIR_AFTER
+  REPAIR_PROOF
+}
+
+enum RepairTaskStatus {
+  QUEUED
+  ACCEPTED
+  EN_ROUTE
+  IN_PROGRESS
+  BLOCKED
+  COMPLETED
+  REJECTED
+}
+
+enum NotificationStatus {
+  QUEUED
+  SENT
+  READ
+  FAILED
+}
+
+enum InfrastructureAssetType {
+  ROAD
+  BRIDGE
+  DRAINAGE
+  TRAFFIC_SIGNAL
+  STREETLIGHT
+  UTILITY_CORRIDOR
+  WASTE_ZONE
+  MANHOLE
+  EVACUATION_ROUTE
+  EMERGENCY_ZONE
+}
+
+enum AIModelType {
+  POTHOLE
+  ROAD_CRACK
+  FLOODING
+  GARBAGE_OVERFLOW
+  ILLEGAL_DUMPING
+  LANE_DEGRADATION
+  ROAD_OBSTRUCTION
+  MANHOLE_DAMAGE
+  FALLEN_TREE
+  STREETLIGHT_FAILURE
+  DRAINAGE_BLOCKAGE
+  TRAFFIC_SIGNAL_FAILURE
+  ROAD_EROSION
+  INFRASTRUCTURE_COLLAPSE
+}
+
+enum AIModelDeploymentTarget {
+  CLOUD_GPU
+  CLOUD_CPU
+  AWS_GPU_EC2
+  GCP_GPU_VM
+  AZURE_GPU_VM
+  RUNPOD_GPU
+  VAST_GPU
+  LAMBDA_LABS_GPU
+  EDGE_JETSON_NANO
+  EDGE_JETSON_XAVIER
+  EDGE_JETSON_ORIN
+  EDGE_CORAL_TPU
+  EDGE_TFLITE
+  EDGE_COREML
+  VEHICLE_DASHCAM
+}
+
+enum InferenceJobStatus {
+  QUEUED
+  RETRY
+  RUNNING
+  COMPLETED
+  FAILED
+  DEAD_LETTER
+  CANCELLED
+}
+
+enum InferenceWorkerState {
+  ONLINE
+  DRAINING
+  OFFLINE
+  EXPIRED
+  FAILED
+}
+
+enum EdgeDeviceStatus {
+  ONLINE
+  DEGRADED
+  OFFLINE
+  SYNCING
+}
+
+enum EmergencySeverity {
+  WATCH
+  ELEVATED
+  SEVERE
+  DISASTER
+}
+
+enum TenantPlan {
+  STARTER
+  GROWTH
+  ENTERPRISE
+  MISSION_CRITICAL
+}
+
+enum BillingStatus {
+  TRIAL
+  ACTIVE
+  PAST_DUE
+  SUSPENDED
+  CANCELLED
+}
+
+model User {
+  id             String          @id @default(cuid())
+  email          String          @unique
+  name           String
+  role           UserRole
+  municipalityId String?
+  districtId     String?
+  workerProfile  FieldWorker?
+  municipality   Municipality?   @relation(fields: [municipalityId], references: [id], onDelete: SetNull)
+  district       District?       @relation(fields: [districtId], references: [id], onDelete: SetNull)
+  createdIncidents Incident[]    @relation("IncidentCreator")
+  auditLogs      AuditLog[]
+  notifications  Notification[]
+  telemetryEvents TelemetryEvent[]
+  agentDecisions AgentDecision[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@index([municipalityId, role])
+  @@index([districtId])
+  @@map("users")
+}
+
+model Municipality {
+  id             String              @id @default(cuid())
+  name           String
+  state          String
+  country        String              @default("IN")
+  city           String
+  postalCode     String?
+  boundaryGeoJson Json?
+  timezone       String              @default("Asia/Kolkata")
+  users          User[]
+  districts      District[]
+  departments    Department[]
+  incidents      Incident[]
+  analytics      AnalyticsSnapshot[]
+  auditLogs      AuditLog[]
+  telemetryEvents TelemetryEvent[]
+  infrastructureAssets InfrastructureAsset[]
+  aiModels       AIModelRegistry[]
+  inferenceJobs  InferenceJob[]
+  edgeDevices    EdgeDevice[]
+  graphEdges     KnowledgeGraphEdge[]
+  agentDecisions AgentDecision[]
+  predictions    PredictionSnapshot[]
+  emergencyEvents EmergencyEvent[]
+  modelDriftEvents ModelDriftEvent[]
+  billingAccounts BillingAccount[]
+  usageMeters    UsageMeterEvent[]
+  mobileSyncEvents MobileSyncEvent[]
+  operationalValidations OperationalValidation[]
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+
+  @@index([state, city])
+  @@map("municipalities")
+}
+
+model District {
+  id             String        @id @default(cuid())
+  municipalityId String
+  name           String
+  code           String
+  boundaryGeoJson Json?
+  riskScore      Decimal       @default(0) @db.Decimal(7, 3)
+  municipality   Municipality  @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  users          User[]
+  incidents      Incident[]
+  fieldWorkers   FieldWorker[]
+  infrastructureAssets InfrastructureAsset[]
+  predictions    PredictionSnapshot[]
+  emergencyEvents EmergencyEvent[]
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@unique([municipalityId, code])
+  @@index([municipalityId, riskScore])
+  @@map("districts")
+}
+
+model Department {
+  id             String         @id @default(cuid())
+  municipalityId String
+  type           DepartmentType
+  name           String
+  activeCrewCount Int           @default(0)
+  openIncidentCount Int         @default(0)
+  serviceZones   String[]
+  slaLowHours    Int            @default(168)
+  slaMediumHours Int            @default(72)
+  slaHighHours   Int            @default(24)
+  slaCriticalHours Int          @default(4)
+  municipality   Municipality   @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  incidents      Incident[]
+  fieldWorkers   FieldWorker[]
+  repairTasks    RepairTask[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  @@unique([municipalityId, type])
+  @@index([municipalityId, openIncidentCount])
+  @@map("departments")
+}
+
+model Incident {
+  id                  String            @id @default(cuid())
+  incidentCode        String            @unique
+  municipalityId      String
+  districtId          String?
+  routeSegmentId      String?
+  createdById         String?
+  assignedDepartmentId String?
+  latitude            Decimal           @db.Decimal(10, 7)
+  longitude           Decimal           @db.Decimal(10, 7)
+  roadName            String?
+  city                String
+  state               String
+  postalCode          String?
+  geohash             String
+  severity            IncidentSeverity
+  confidence          Decimal           @db.Decimal(6, 5)
+  status              IncidentStatus    @default(DETECTED)
+  detectionSource     DetectionSource
+  repairPriority      Int
+  slaDueAt            DateTime
+  detectedAt          DateTime
+  verifiedAt          DateTime?
+  assignedAt          DateTime?
+  startedAt           DateTime?
+  completedAt         DateTime?
+  reopenedAt          DateTime?
+  metadata            Json              @default("{}")
+  municipality        Municipality      @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  district            District?         @relation(fields: [districtId], references: [id], onDelete: SetNull)
+  createdBy           User?             @relation("IncidentCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  assignedDepartment  Department?       @relation(fields: [assignedDepartmentId], references: [id], onDelete: SetNull)
+  detections          Detection[]
+  mediaAssets         MediaAsset[]
+  repairTasks         RepairTask[]
+  auditLogs           AuditLog[]
+  notifications       Notification[]
+  graphEdgesFrom      KnowledgeGraphEdge[] @relation("GraphFromIncident")
+  graphEdgesTo        KnowledgeGraphEdge[] @relation("GraphToIncident")
+  agentDecisions      AgentDecision[]
+  predictions         PredictionSnapshot[]
+  emergencyEvents     EmergencyEvent[]
+  inferenceJobs       InferenceJob[]
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([municipalityId, status, severity])
+  @@index([municipalityId, geohash])
+  @@index([districtId, status])
+  @@index([routeSegmentId])
+  @@index([slaDueAt])
+  @@map("incidents")
+}
+
+model Detection {
+  id              String          @id @default(cuid())
+  incidentId      String?
+  sessionId       String
+  sourceId        String
+  modelVersion    String
+  className       String
+  classId         Int
+  confidence      Decimal         @db.Decimal(6, 5)
+  severity        IncidentSeverity
+  frameIndex      Int?
+  bboxX1          Decimal         @db.Decimal(10, 4)
+  bboxY1          Decimal         @db.Decimal(10, 4)
+  bboxX2          Decimal         @db.Decimal(10, 4)
+  bboxY2          Decimal         @db.Decimal(10, 4)
+  bboxWidthRatio  Decimal         @db.Decimal(8, 7)
+  bboxHeightRatio Decimal         @db.Decimal(8, 7)
+  bboxAreaRatio   Decimal         @db.Decimal(8, 7)
+  edgeVariance    Decimal         @db.Decimal(12, 4)
+  framePersistence Int            @default(1)
+  latitude        Decimal?        @db.Decimal(10, 7)
+  longitude       Decimal?        @db.Decimal(10, 7)
+  geohash         String?
+  capturedAt      DateTime
+  incident        Incident?       @relation(fields: [incidentId], references: [id], onDelete: SetNull)
+  mediaAssets     MediaAsset[]
+  inferenceJobId  String?
+  inferenceJob    InferenceJob?    @relation(fields: [inferenceJobId], references: [id], onDelete: SetNull)
+  createdAt       DateTime        @default(now())
+
+  @@index([incidentId])
+  @@index([inferenceJobId])
+  @@index([sessionId, frameIndex])
+  @@index([geohash])
+  @@index([capturedAt])
+  @@map("detections")
+}
+
+model MediaAsset {
+  id            String         @id @default(cuid())
+  incidentId    String?
+  detectionId   String?
+  repairTaskId  String?
+  type          MediaAssetType
+  storageProvider String
+  bucket        String?
+  objectKey     String
+  publicUrl     String?
+  contentType   String
+  sizeBytes     BigInt
+  checksumSha256 String?
+  width         Int?
+  height        Int?
+  capturedAt    DateTime?
+  metadata      Json           @default("{}")
+  incident      Incident?      @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+  detection     Detection?     @relation(fields: [detectionId], references: [id], onDelete: SetNull)
+  repairTask    RepairTask?    @relation(fields: [repairTaskId], references: [id], onDelete: SetNull)
+  createdAt     DateTime       @default(now())
+
+  @@index([incidentId, type])
+  @@index([detectionId])
+  @@index([repairTaskId])
+  @@map("media_assets")
+}
+
+model RepairTask {
+  id             String           @id @default(cuid())
+  incidentId     String
+  departmentId   String
+  fieldWorkerId  String?
+  status         RepairTaskStatus @default(QUEUED)
+  priority       Int
+  acceptedAt     DateTime?
+  startedAt      DateTime?
+  completedAt    DateTime?
+  notes          String?
+  verification   Json             @default("{}")
+  incident       Incident         @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+  department     Department       @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+  fieldWorker    FieldWorker?     @relation(fields: [fieldWorkerId], references: [id], onDelete: SetNull)
+  mediaAssets    MediaAsset[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  @@index([departmentId, status, priority])
+  @@index([fieldWorkerId, status])
+  @@index([incidentId])
+  @@map("repair_tasks")
+}
+
+model FieldWorker {
+  id             String       @id @default(cuid())
+  userId         String       @unique
+  municipalityId String
+  districtId     String?
+  departmentId   String
+  mobileNumber   String?
+  active         Boolean      @default(true)
+  currentLatitude Decimal?    @db.Decimal(10, 7)
+  currentLongitude Decimal?   @db.Decimal(10, 7)
+  lastSeenAt     DateTime?
+  skills         String[]
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  district       District?    @relation(fields: [districtId], references: [id], onDelete: SetNull)
+  department     Department   @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+  repairTasks    RepairTask[]
+  telemetryEvents WorkerTelemetryEvent[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([municipalityId, active])
+  @@index([departmentId, active])
+  @@map("field_workers")
+}
+
+model AuditLog {
+  id             String       @id @default(cuid())
+  municipalityId String
+  incidentId     String?
+  actorId        String?
+  actorRole      UserRole?
+  action         String
+  fromStatus     IncidentStatus?
+  toStatus       IncidentStatus?
+  ipAddress      String?
+  userAgent      String?
+  metadata       Json         @default("{}")
+  municipality   Municipality @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  incident       Incident?    @relation(fields: [incidentId], references: [id], onDelete: SetNull)
+  actor          User?        @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  createdAt      DateTime     @default(now())
+
+  @@index([municipalityId, createdAt])
+  @@index([incidentId, createdAt])
+  @@index([actorId, createdAt])
+  @@map("audit_logs")
+}
+
+model Notification {
+  id             String             @id @default(cuid())
+  municipalityId String
+  userId         String?
+  incidentId     String?
+  status         NotificationStatus @default(QUEUED)
+  channel        String
+  title          String
+  body           String
+  metadata       Json               @default("{}")
+  sentAt         DateTime?
+  readAt         DateTime?
+  user           User?              @relation(fields: [userId], references: [id], onDelete: SetNull)
+  incident       Incident?          @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+  createdAt      DateTime           @default(now())
+
+  @@index([municipalityId, status])
+  @@index([userId, readAt])
+  @@index([incidentId])
+  @@map("notifications")
+}
+
+model TelemetryEvent {
+  id             String       @id @default(cuid())
+  municipalityId String
+  actorId        String?
+  eventType      String
+  source         String
+  latencyMs      Int?
+  payload        Json         @default("{}")
+  municipality   Municipality @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  actor          User?        @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  createdAt      DateTime     @default(now())
+
+  @@index([municipalityId, eventType, createdAt])
+  @@index([source, createdAt])
+  @@map("telemetry_events")
+}
+
+model InfrastructureAsset {
+  id             String                  @id @default(cuid())
+  municipalityId String
+  districtId     String?
+  assetType      InfrastructureAssetType
+  assetCode      String
+  name           String
+  geometryGeoJson Json
+  conditionScore Decimal                 @default(100) @db.Decimal(7, 3)
+  riskScore      Decimal                 @default(0) @db.Decimal(7, 3)
+  lastInspectedAt DateTime?
+  metadata       Json                    @default("{}")
+  municipality   Municipality            @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  district       District?               @relation(fields: [districtId], references: [id], onDelete: SetNull)
+  graphEdgesFrom KnowledgeGraphEdge[]     @relation("GraphFromAsset")
+  graphEdgesTo   KnowledgeGraphEdge[]     @relation("GraphToAsset")
+  predictions    PredictionSnapshot[]
+  createdAt      DateTime                @default(now())
+  updatedAt      DateTime                @updatedAt
+
+  @@unique([municipalityId, assetCode])
+  @@index([municipalityId, assetType, riskScore])
+  @@index([districtId, riskScore])
+  @@map("infrastructure_assets")
+}
+
+model KnowledgeGraphEdge {
+  id             String       @id @default(cuid())
+  municipalityId String
+  fromIncidentId String?
+  toIncidentId   String?
+  fromAssetId    String?
+  toAssetId      String?
+  relationship   String
+  weight         Decimal      @default(1) @db.Decimal(8, 5)
+  evidence       Json         @default("{}")
+  municipality   Municipality @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  fromIncident   Incident?    @relation("GraphFromIncident", fields: [fromIncidentId], references: [id], onDelete: Cascade)
+  toIncident     Incident?    @relation("GraphToIncident", fields: [toIncidentId], references: [id], onDelete: Cascade)
+  fromAsset      InfrastructureAsset? @relation("GraphFromAsset", fields: [fromAssetId], references: [id], onDelete: Cascade)
+  toAsset        InfrastructureAsset? @relation("GraphToAsset", fields: [toAssetId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+
+  @@index([municipalityId, relationship])
+  @@index([fromIncidentId])
+  @@index([toIncidentId])
+  @@index([fromAssetId])
+  @@index([toAssetId])
+  @@map("knowledge_graph_edges")
+}
+
+model AIModelRegistry {
+  id               String                  @id @default(cuid())
+  municipalityId   String?
+  modelType        AIModelType
+  version          String
+  artifactUri      String
+  metrics          Json
+  trainingMetadata Json
+  supportedClasses String[]
+  deploymentTarget AIModelDeploymentTarget
+  latencyP50Ms     Int
+  latencyP95Ms     Int
+  gpuRequired      Boolean                 @default(false)
+  edgeCompatible   Boolean                 @default(false)
+  active           Boolean                 @default(false)
+  rollbackVersion  String?
+  benchmarkProfile Json                    @default("{}")
+  deploymentMetadata Json                  @default("{}")
+  promotedAt       DateTime?
+  municipality     Municipality?           @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  inferenceJobs    InferenceJob[]
+  driftEvents      ModelDriftEvent[]
+  auditTrails      AIModelAuditTrail[]
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
+
+  @@unique([municipalityId, modelType, version])
+  @@index([modelType, active])
+  @@index([deploymentTarget, edgeCompatible])
+  @@map("ai_model_registry")
+}
+
+model InferenceJob {
+  id              String             @id @default(cuid())
+  municipalityId  String
+  incidentId      String?
+  modelId         String
+  sourceUri       String
+  status          InferenceJobStatus @default(QUEUED)
+  queueName       String
+  workerId        String?
+  gpuDevice       String?
+  priority        Int                @default(50)
+  batchKey        String?
+  consensusScore  Decimal?           @db.Decimal(6, 5)
+  retryAfter      DateTime?
+  deadlineAt      DateTime?
+  attempts        Int                @default(0)
+  latencyMs       Int?
+  result          Json               @default("{}")
+  error           String?
+  telemetry        Json              @default("{}")
+  scheduledAt     DateTime           @default(now())
+  startedAt       DateTime?
+  completedAt     DateTime?
+  municipality    Municipality       @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  incident        Incident?          @relation(fields: [incidentId], references: [id], onDelete: SetNull)
+  model           AIModelRegistry    @relation(fields: [modelId], references: [id], onDelete: Restrict)
+  worker          InferenceWorker?    @relation(fields: [workerId], references: [workerId], onDelete: SetNull)
+  detections      Detection[]
+  events          InferenceJobEvent[]
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  @@index([municipalityId, status, priority])
+  @@index([queueName, status])
+  @@index([batchKey, status])
+  @@index([modelId, status])
+  @@map("inference_jobs")
+}
+
+model InferenceWorker {
+  id                String                 @id @default(cuid())
+  workerId          String                 @unique
+  state             InferenceWorkerState   @default(ONLINE)
+  queueNames        String[]
+  capabilities      Json                   @default("{}")
+  supportedModels   String[]
+  supportedClasses  String[]
+  gpuCount          Int                    @default(0)
+  gpuName           String?
+  cudaVersion       String?
+  torchVersion      String?
+  vramTotalMb       Int?
+  vramUsedMb        Int?
+  activeJobCount    Int                    @default(0)
+  maxConcurrentJobs Int                    @default(1)
+  lastHeartbeatAt   DateTime?
+  registeredAt      DateTime
+  expiresAt         DateTime?
+  failureReason     String?
+  remoteAddress     String?
+  telemetry         Json                   @default("{}")
+  jobs              InferenceJob[]
+  events            InferenceJobEvent[]
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+
+  @@index([state, expiresAt])
+  @@map("inference_workers")
+}
+
+model InferenceJobEvent {
+  id         String            @id @default(cuid())
+  jobId      String
+  workerId   String?
+  event      String
+  payload    Json              @default("{}")
+  job        InferenceJob      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  worker     InferenceWorker?  @relation(fields: [workerId], references: [workerId], onDelete: SetNull)
+  createdAt  DateTime          @default(now())
+
+  @@index([jobId, createdAt])
+  @@index([workerId, createdAt])
+  @@map("inference_job_events")
+}
+
+model AIModelAuditTrail {
+  id             String          @id @default(cuid())
+  modelId        String
+  municipalityId String?
+  action         String
+  actorId        String?
+  fromVersion    String?
+  toVersion      String?
+  reason         String
+  evidence       Json            @default("{}")
+  telemetry      Json            @default("{}")
+  model          AIModelRegistry @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  createdAt      DateTime        @default(now())
+
+  @@index([modelId, createdAt])
+  @@index([municipalityId, action, createdAt])
+  @@map("ai_model_audit_trails")
+}
+
+model EdgeDevice {
+  id              String           @id @default(cuid())
+  municipalityId  String
+  deviceCode      String
+  deviceType      String
+  status          EdgeDeviceStatus @default(OFFLINE)
+  latitude        Decimal?         @db.Decimal(10, 7)
+  longitude       Decimal?         @db.Decimal(10, 7)
+  supportedModels String[]
+  lastSeenAt      DateTime?
+  bandwidthKbps   Int?
+  batteryPercent  Int?
+  syncCursor      String?
+  metadata        Json             @default("{}")
+  municipality    Municipality     @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  @@unique([municipalityId, deviceCode])
+  @@index([municipalityId, status])
+  @@map("edge_devices")
+}
+
+model WorkerTelemetryEvent {
+  id             String      @id @default(cuid())
+  fieldWorkerId  String
+  latitude       Decimal     @db.Decimal(10, 7)
+  longitude      Decimal     @db.Decimal(10, 7)
+  speedKph       Decimal?    @db.Decimal(7, 3)
+  headingDegrees Decimal?    @db.Decimal(7, 3)
+  batteryPercent Int?
+  capturedAt     DateTime
+  payload        Json        @default("{}")
+  fieldWorker    FieldWorker @relation(fields: [fieldWorkerId], references: [id], onDelete: Cascade)
+  createdAt      DateTime    @default(now())
+
+  @@index([fieldWorkerId, capturedAt])
+  @@map("worker_telemetry_events")
+}
+
+model AgentDecision {
+  id             String       @id @default(cuid())
+  municipalityId String
+  incidentId     String?
+  actorId        String?
+  agentName      String
+  decisionType   String
+  recommendation Json
+  confidence     Decimal      @db.Decimal(6, 5)
+  accepted       Boolean?
+  trace          Json         @default("{}")
+  municipality   Municipality @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  incident       Incident?    @relation(fields: [incidentId], references: [id], onDelete: SetNull)
+  actor          User?        @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  createdAt      DateTime     @default(now())
+
+  @@index([municipalityId, agentName, createdAt])
+  @@index([incidentId])
+  @@map("agent_decisions")
+}
+
+model PredictionSnapshot {
+  id             String       @id @default(cuid())
+  municipalityId String
+  districtId     String?
+  incidentId     String?
+  assetId        String?
+  predictionType String
+  probability    Decimal      @db.Decimal(6, 5)
+  horizonHours   Int
+  factors        Json
+  modelVersion   String
+  municipality   Municipality @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  district       District?    @relation(fields: [districtId], references: [id], onDelete: SetNull)
+  incident       Incident?    @relation(fields: [incidentId], references: [id], onDelete: SetNull)
+  asset          InfrastructureAsset? @relation(fields: [assetId], references: [id], onDelete: SetNull)
+  createdAt      DateTime     @default(now())
+
+  @@index([municipalityId, predictionType, createdAt])
+  @@index([districtId, predictionType])
+  @@index([assetId])
+  @@map("prediction_snapshots")
+}
+
+model EmergencyEvent {
+  id             String            @id @default(cuid())
+  municipalityId String
+  districtId     String?
+  incidentId     String?
+  eventType      String
+  severity       EmergencySeverity
+  status         String
+  centroidLat    Decimal?          @db.Decimal(10, 7)
+  centroidLng    Decimal?          @db.Decimal(10, 7)
+  impactRadiusMeters Int?
+  commandLog     Json              @default("[]")
+  municipality   Municipality      @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  district       District?         @relation(fields: [districtId], references: [id], onDelete: SetNull)
+  incident       Incident?         @relation(fields: [incidentId], references: [id], onDelete: SetNull)
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  @@index([municipalityId, severity, status])
+  @@index([districtId, status])
+  @@map("emergency_events")
+}
+
+model ModelDriftEvent {
+  id             String          @id @default(cuid())
+  municipalityId String
+  modelId        String
+  driftType      String
+  score          Decimal         @db.Decimal(8, 5)
+  threshold      Decimal         @db.Decimal(8, 5)
+  windowStart    DateTime
+  windowEnd      DateTime
+  evidence       Json
+  resolvedAt     DateTime?
+  municipality   Municipality    @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  model          AIModelRegistry @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  createdAt      DateTime        @default(now())
+
+  @@index([municipalityId, driftType, createdAt])
+  @@index([modelId, createdAt])
+  @@map("model_drift_events")
+}
+
+model BillingAccount {
+  id             String        @id @default(cuid())
+  municipalityId String
+  plan           TenantPlan    @default(ENTERPRISE)
+  status         BillingStatus @default(ACTIVE)
+  billingEmail   String?
+  currency       String        @default("USD")
+  aiUnitPriceUsd Decimal       @default(0.0025) @db.Decimal(10, 6)
+  storageGbPriceUsd Decimal    @default(0.028) @db.Decimal(10, 6)
+  infraUnitPriceUsd Decimal    @default(0.015) @db.Decimal(10, 6)
+  metadata       Json          @default("{}")
+  municipality   Municipality  @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@unique([municipalityId])
+  @@index([status, plan])
+  @@map("billing_accounts")
+}
+
+model UsageMeterEvent {
+  id             String       @id @default(cuid())
+  municipalityId String
+  metric         String
+  quantity       Decimal      @db.Decimal(14, 4)
+  unit           String
+  metadata       Json         @default("{}")
+  municipality   Municipality @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+
+  @@index([municipalityId, metric, createdAt])
+  @@map("usage_meter_events")
+}
+
+model MobileSyncEvent {
+  id             String       @id @default(cuid())
+  municipalityId String
+  userId         String?
+  deviceId       String
+  appRole        UserRole
+  syncDirection  String
+  offlineSeconds Int          @default(0)
+  queuedUploads  Int          @default(0)
+  uploadedBytes  BigInt       @default(0)
+  conflictCount  Int          @default(0)
+  lowBandwidth   Boolean      @default(false)
+  websocketSynced Boolean     @default(false)
+  telemetry      Json         @default("{}")
+  municipality   Municipality @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+
+  @@index([municipalityId, deviceId, createdAt])
+  @@index([userId, createdAt])
+  @@map("mobile_sync_events")
+}
+
+model OperationalValidation {
+  id             String       @id @default(cuid())
+  municipalityId String?
+  flowName       String
+  status         String
+  runtimeChecks  Json         @default("{}")
+  deploymentChecks Json       @default("{}")
+  telemetryChecks Json        @default("{}")
+  websocketChecks Json        @default("{}")
+  persistenceChecks Json      @default("{}")
+  scalabilityChecks Json      @default("{}")
+  evidence       Json         @default("{}")
+  municipality   Municipality? @relation(fields: [municipalityId], references: [id], onDelete: SetNull)
+  createdAt      DateTime     @default(now())
+
+  @@index([municipalityId, flowName, createdAt])
+  @@map("operational_validations")
+}
+
+model AnalyticsSnapshot {
+  id             String       @id @default(cuid())
+  municipalityId String
+  districtId     String?
+  snapshotDate   DateTime
+  potholesByDistrict Json
+  severityDistribution Json
+  repairCompletionRate Decimal @db.Decimal(6, 5)
+  averageSlaHours Decimal      @db.Decimal(8, 3)
+  recurrenceRate Decimal       @db.Decimal(6, 5)
+  roadQualityTrends Json
+  seasonalFailureAnalysis Json
+  repairEffectiveness Json
+  municipality   Municipality @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+
+  @@unique([municipalityId, districtId, snapshotDate])
+  @@index([municipalityId, snapshotDate])
+  @@map("analytics_snapshots")
+}

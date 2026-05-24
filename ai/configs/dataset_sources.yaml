@@ -1,0 +1,52 @@
+dataset_name: civiceye-pothole-foundation
+target_capability: pothole_detection
+sources:
+  - id: roboflow_pothole_public
+    type: roboflow
+    license_required: true
+    raw_path: raw/roboflow_pothole_public
+    expected_annotation_formats:
+      - yolo
+      - coco
+    notes: Public Roboflow pothole projects must be license-reviewed before training.
+  - id: kaggle_road_damage
+    type: kaggle
+    license_required: true
+    raw_path: raw/kaggle_road_damage
+    expected_annotation_formats:
+      - yolo
+      - pascal_voc
+      - coco
+    notes: Use pothole and road-damage subsets only for Phase A.
+  - id: municipal_field_capture
+    type: field_capture
+    license_required: false
+    raw_path: raw/municipal_field_capture
+    expected_annotation_formats:
+      - civiceye_manifest
+    notes: First-party municipal pilots and mobile capture uploads.
+  - id: negative_road_surfaces
+    type: curated_negative
+    license_required: false
+    raw_path: raw/negative_road_surfaces
+    expected_annotation_formats:
+      - negative_manifest
+    notes: Clean roads, shadows, puddles, markings, stains, and non-damaged surfaces.
+
+required_coverage:
+  lighting:
+    - daylight
+    - low_light
+    - night
+  weather:
+    - dry
+    - rain
+    - wet_road
+  camera:
+    - mobile_phone
+    - dashcam
+    - survey_camera
+  quality:
+    - sharp
+    - motion_blur
+    - compression_artifacts

@@ -1,0 +1,14 @@
+{
+  "title": "CivicEye Multi-Tenant",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Tenant usage",
+      "targets": [
+        { "expr": "sum(civiceye_tenant_usage_total) by (municipality_id, metric, unit)" }
+      ]
+    }
+  ]
+}
